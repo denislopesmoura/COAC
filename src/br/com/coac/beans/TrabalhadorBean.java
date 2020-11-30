@@ -20,20 +20,21 @@ import br.com.coac.entities.Trabalhador;
 public class TrabalhadorBean{
 
     /**
-	 * Cria um novo trablhador no reposit�rio.
+	 * Cria um novo trabalhador no reposit�rio.
 	 * 
-	 * @return um boolean informando se a criação foi realizada.
+     * @param trabalhador o trabalhador que será criado
+	 * @return o trabalhador criado.
 	 */
-    public boolean criarTrabalhador(Trabalhador trabalhador){
+    public Trabalhador criarTrabalhador(Trabalhador trabalhador){
 
-        return false;
+        return null;
         
     }
 
     /**
-	 * Busca um trablhador no reposit�rio através do nome artistico.
+	 * Busca um trabalhador no reposit�rio através do nome artistico.
 	 * 
-     * @param nomeArtistico
+     * @param nomeArtistico nome artistico do trabalhador
 	 * @return trabalhador encontrado
 	 */
     public Trabalhador buscarTrabalhador(String nomeArtistico){
@@ -54,7 +55,7 @@ public class TrabalhadorBean{
     /**
 	 * Deleta um trabalhador do reposit�rio.
 	 * 
-	 * @param usuario o trabalhador que será deletado
+	 * @param trabalhador o trabalhador que será deletado
 	 */
 	public void deletarTrabalhador(Trabalhador trabalhador) {
 	}
@@ -62,11 +63,11 @@ public class TrabalhadorBean{
 	/**
 	 * Atualiza um trabalhador espec�fico no reposit�rio, utilizando o nome artistico.
 	 * 
-	 * @param nomeArtistico             o email do usu�rio que ser� atualizado
-	 * @param trabalhadorAtualizado o usu�rio com os campos atualizados
+	 * @param nomeArtistico             o nome artistico do trabalhador
+	 * @param trabalhadorAtualizado     o trabalhador com os campos atualizados
 	 * @return o trabalhador atualizado
 	 */
-	public Usuario atualizarTrabalhador(String nomeArtistico, Trabalhador trabalhadorAtualizado) {
+	public Trabalhador atualizarTrabalhador(String nomeArtistico, Trabalhador trabalhadorAtualizado) {
 		return null;
 	}
 
