@@ -2,6 +2,14 @@ package br.com.coac.entities;
 
 import java.io.File;
 
+/**
+ * Classe que possui as informações básicas de um endereço, além de um
+ * comprovante, para provar que aquele local pertence a uma determinada pessoa
+ * ou instituição.
+ * 
+ * @author Carlos
+ *
+ */
 public class Endereco {
 	private String cep;
 	private String bairro;
