@@ -3,9 +3,9 @@ package br.com.coac.entities;
 import java.io.File;
 
 /**
- * Classe que possui as informações básicas de um endereço, além de um
+ * Classe que possui as informaï¿½ï¿½es bï¿½sicas de um endereï¿½o, alï¿½m de um
  * comprovante, para provar que aquele local pertence a uma determinada pessoa
- * ou instituição.
+ * ou instituiï¿½ï¿½o.
  * 
  * @author Carlos
  *
