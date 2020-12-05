@@ -1,4 +1,4 @@
-package br.com.coac.entities;
+package entities;
 
 import java.io.File;
 import java.util.List;

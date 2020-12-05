@@ -1,12 +1,11 @@
-package br.com.coac.beans;
+package beans;
 
 import java.util.List;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 
-import br.com.coac.entities.Endereco;
-import br.com.coac.entities.Trabalhador;
+import entities.Endereco;
 
 /**
  * Classe EJB que possui os metodos de manipulacao e consulta do repositorio de
