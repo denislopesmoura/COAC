@@ -16,14 +16,14 @@ public class Arquivo extends Entidade {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(nullable = false)
+	@Column(nullable = false, name = "nome")
 	private String nome;
 
 	@Lob
-	@Column(nullable = false)
+	@Column(nullable = false, name = "conteudo")
 	private byte[] conteudo;
 
-	@Column(nullable = false)
+	@Column(nullable = false, name = "tipo")
 	private String tipo;
 
 	public String getNome() {
@@ -49,4 +49,5 @@ public class Arquivo extends Entidade {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+
 }

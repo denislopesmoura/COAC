@@ -1,15 +1,12 @@
 package entities;
 
-import java.io.File;
 import java.util.Calendar;
-import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.OneToOne;
@@ -25,50 +22,48 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "usuarios")
 @NamedNativeQueries(value = {
-		@NamedNativeQuery(name = "usuario.pegarUsuarioPorCpf", query = "SELECT * FROM usuarios WHERE cpf = :cpf", resultClass = Usuario.class),
-		@NamedNativeQuery(name = "usuario.pegarTodosUsuarios", query = "SELECT * FROM usuarios", resultClass = Usuario.class) })
+		@NamedNativeQuery(name = "Usuario.pegarUsuarioPorCpf", query = "SELECT * FROM usuarios WHERE cpf = ?", resultClass = Usuario.class),
+		@NamedNativeQuery(name = "Usuario.pegarTodosUsuarios", query = "SELECT * FROM usuarios", resultClass = Usuario.class) })
 public class Usuario extends Entidade {
 	private static final long serialVersionUID = 1L;
 
-	@Column(nullable = false)
-	private File foto;
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "foto_id")
+	private Arquivo foto;
 
-	@Column(nullable = false)
+	@Column(nullable = false, name = "nome")
 	private String nome;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "data_de_nascimento", nullable = false)
+	@Column(nullable = false, name = "data_de_nascimento")
 	private Calendar dataNascimento;
 
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false, unique = true, name = "cpf")
 	private String cpf;
 
-	@Column(nullable = false)
+	@Column(nullable = false, name = "email")
 	private String email;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
 
-	@Column(nullable = false)
+	@Column(nullable = false, name = "telefone")
 	private String telefone;
 
-	@Column(nullable = false)
-	private String rendaMensalImpactadaPandemia;
+//	@ManyToMany
+//	@JoinTable(name = "usuarios_cadastros", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "cadastro_id"))
+//	private List<Cadastro> cadastros;
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "usuarios_cadastros", joinColumns = { @JoinColumn(name = "usuario_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "cadastro_id") })
-	private List<Cadastro> cadastros;
+//	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	@JoinColumn(name = "documento_de_homologacao_id")
+//	private Arquivo documentoHomologacao;
 
-	@Column(nullable = false)
-	private File documentoHomologacao;
-
-	public File getFoto() {
+	public Arquivo getFoto() {
 		return foto;
 	}
 
-	public void setFoto(File foto) {
+	public void setFoto(Arquivo foto) {
 		this.foto = foto;
 	}
 
@@ -118,29 +113,5 @@ public class Usuario extends Entidade {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
-	}
-
-	public String getRendaMensalImpactadaPandemia() {
-		return rendaMensalImpactadaPandemia;
-	}
-
-	public void setRendaMensalImpactadaPandemia(String rendaMensalImpactadaPandemia) {
-		this.rendaMensalImpactadaPandemia = rendaMensalImpactadaPandemia;
-	}
-
-	public List<Cadastro> getCadastros() {
-		return cadastros;
-	}
-
-	public void setCadastros(List<Cadastro> cadastros) {
-		this.cadastros = cadastros;
-	}
-
-	public File getDocumentoHomologacao() {
-		return documentoHomologacao;
-	}
-
-	public void setDocumentoHomologacao(File documentoHomologacao) {
-		this.documentoHomologacao = documentoHomologacao;
 	}
 }

@@ -4,12 +4,6 @@ import java.io.File;
 import java.util.List;
 
 /**
- * Local onde é realizada atividades culturais, como teatro, esportes, dança,
- * pintura, etc.
- * 
- * Qualquer usuário do sistema pode cadastrar um espaço cultural, para ser
- * analisado e aprovado por um administrador. Esses espaços culturais são salvos
- * e ficam disponíveis para serem relacionados ao trabalhadores.
  * 
  * @author Carlos
  *

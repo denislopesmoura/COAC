@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Cadastro do Usuário</title>
+</h:head>
+<h:body>
+	<h:form enctype="multipart/form-data">
+		<h:outputLabel value="Cadastro de Usuários" />
+		<hr />
+
+		<h:outputLabel value="Foto: " />
+		<p:fileUpload value="#{usuariosMB.foto}" mode="simple"
+			skinSimple="true" required="true" />
+		<br />
+
+		<h:outputLabel value="Nome: " />
+		<h:inputText required="true" value="#{usuariosMB.usuario.nome}" />
+		<br />
+
+		<h:outputLabel value="Cpf: " />
+		<h:inputText required="true" value="#{usuariosMB.usuario.cpf}"
+			id="cpf-input" />
+		<br />
+
+		<h:outputLabel value="Data de Nascimento: " />
+		<h:inputText required="true" value="#{usuariosMB.dataNascimento}">
+			<f:convertDateTime pattern="dd/MM/yyyy" />
+		</h:inputText>
+		<br />
+
+		<h:outputLabel value="Email: " />
+		<h:inputText required="true" value="#{usuariosMB.usuario.email}" />
+		<br />
+
+		<h:outputLabel value="Cep: " />
+		<h:inputText required="true" value="#{usuariosMB.endereco.cep}" />
+		<br />
+
+		<h:outputLabel value="Bairro: " />
+		<h:inputText required="true" value="#{usuariosMB.endereco.bairro}" />
+		<br />
+
+		<h:outputLabel value="Rua: " />
+		<h:inputText required="true" value="#{usuariosMB.endereco.rua}" />
+		<br />
+
+		<h:outputLabel value="Número: " />
+		<h:inputText required="true" value="#{usuariosMB.endereco.numero}" />
+		<br />
+
+		<h:outputLabel value="Complemento: " />
+		<h:inputText required="false"
+			value="#{usuariosMB.endereco.complemento}" />
+		<br />
+
+		<h:outputLabel value="Comprovante de Residência: " />
+		<p:fileUpload value="#{usuariosMB.comprovanteResidencia}"
+			mode="simple" skinSimple="true" required="true" />
+		<br />
+
+		<h:outputLabel value="Telefone: " />
+		<h:inputText required="true" value="#{usuariosMB.usuario.telefone}" />
+		<br />
+
+		<h:commandButton action="#{usuariosMB.criarUsuario}"
+			value="Criar usuário" />
+	</h:form>
+</h:body>
+</html>

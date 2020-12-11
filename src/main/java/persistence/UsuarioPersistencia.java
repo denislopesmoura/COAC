@@ -4,44 +4,56 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import entities.Usuario;
 
 @Stateless
-public class UsuarioPersistencia extends PersistenceService<Usuario> {
-
-	public UsuarioPersistencia() {
-	}
+public class UsuarioPersistencia extends EntidadePersistencia<Usuario> {
 
 	@PostConstruct
 	public void configurar() {
 		super.setClasse(Usuario.class);
 	}
 
-	public void adicionarUsuario(Usuario u) {
-		this.persistir(u);
+	public void adicionarUsuario(final Usuario usuario) {
+		if (!existePorCpf(usuario.getCpf())) {
+			super.persistir(usuario);
+		}
 	}
 
-	public Usuario pegarUsuarioPorCpf(String cpf) {
-		TypedQuery<Usuario> query = this.getEntityManager().createNamedQuery("usuario.pegarUsuarioPorCpf",
-				this.getClasse());
+	public Usuario pegarUsuarioPorCpf(final String cpf) throws NoResultException {
+		TypedQuery<Usuario> typedQuery = this.getEntityManager().createNamedQuery("Usuario.pegarUsuarioPorCpf",
+				Usuario.class);
 
-		return query.getSingleResult();
+		typedQuery.setParameter(1, cpf);
+
+		return typedQuery.getSingleResult();
 	}
 
 	public List<Usuario> pegarTodosUsuarios() {
-		TypedQuery<Usuario> query = this.getEntityManager().createNamedQuery("usuario.pegarTodosUsuarios",
-				this.getClasse());
+		TypedQuery<Usuario> typedQuery = this.getEntityManager().createNamedQuery("Usuario.pegarTodosUsuarios",
+				Usuario.class);
 
-		return query.getResultList();
+		return typedQuery.getResultList();
 	}
 
-	public void removerUsuario(Usuario usuario) {
-		this.remover(usuario);
+	public void removerUsuarioPorId(final Long id) {
+		this.removerPorId(id);
 	}
 
-	public void atualizarUsuario(Usuario usuario) {
+	public void atualizarUsuario(final Usuario usuario) {
 		this.atualizar(usuario);
+	}
+
+	public boolean existePorCpf(final String cpf) {
+		try {
+			pegarUsuarioPorCpf(cpf);
+
+			return true;
+		} catch (NoResultException ex) {
+			return false;
+		}
 	}
 }

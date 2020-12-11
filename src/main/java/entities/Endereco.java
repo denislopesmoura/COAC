@@ -1,5 +1,6 @@
 package entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,26 +16,26 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "enderecos")
 public class Endereco extends Entidade {
+
 	private static final long serialVersionUID = 1L;
 
-	@Column(nullable = false)
+	@Column(nullable = false, name = "cep")
 	private String cep;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "bairro_id")
-	private Bairro bairro;
+	@Column(nullable = false, name = "bairro")
+	private String bairro;
 
-	@Column(nullable = false)
+	@Column(nullable = false, name = "rua")
 	private String rua;
 
-	@Column(nullable = false)
+	@Column(nullable = false, name = "numero")
 	private String numero;
 
-	@Column
+	@Column(nullable = true, name = "complemento")
 	private String complemento;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "comprovante_id")
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "comprovante_de_endereco_id")
 	private Arquivo comprovante;
 
 	public String getCep() {
@@ -45,11 +46,11 @@ public class Endereco extends Entidade {
 		this.cep = cep;
 	}
 
-	public Bairro getBairro() {
+	public String getBairro() {
 		return bairro;
 	}
 
-	public void setBairro(Bairro bairro) {
+	public void setBairro(String bairro) {
 		this.bairro = bairro;
 	}
 

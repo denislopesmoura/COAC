@@ -4,8 +4,6 @@ import java.io.File;
 import java.util.List;
 
 /**
- * Registro do usuário que trabalha em algum espaço cultural, ou exerce algum
- * trabalho/atividade relacionado.
  * 
  * @author Carlos
  *

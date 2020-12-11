@@ -15,8 +15,11 @@ public class Cadastro extends Entidade {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(nullable = false)
+	@Column(nullable = false, name = "nome")
 	private String nome;
+
+//	@ManyToMany(mappedBy = "cadastros")
+//	private List<Usuario> usuarios;
 
 	public String getNome() {
 		return nome;
