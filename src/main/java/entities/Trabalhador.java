@@ -26,6 +26,8 @@ public class Trabalhador {
 	private String rendaMensalProducoesCulturais;
 	private String rendaAnual2018;
 	private List<String> beneficios;
+	private List<File> cadastros;
+	private File documentoHomologacao;
 
 	public String getNomeArtistico() {
 		return nomeArtistico;
@@ -161,5 +163,21 @@ public class Trabalhador {
 
 	public void setBeneficios(List<String> beneficios) {
 		this.beneficios = beneficios;
+	}
+
+	public List<File> getCadastros() {
+		return cadastros;
+	}
+
+	public void setCadastros(List<File> cadastros) {
+		this.cadastros = cadastros;
+	}
+
+	public File getDocumentoHomologacao() {
+		return documentoHomologacao;
+	}
+
+	public void setDocumentoHomologacao(File documentoHomologacao) {
+		this.documentoHomologacao = documentoHomologacao;
 	}
 }

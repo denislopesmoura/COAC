@@ -2,6 +2,8 @@ package exceptions;
 
 import java.util.Iterator;
 
+import javax.ejb.EJBException;
+import javax.el.ELException;
 import javax.faces.FacesException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExceptionHandler;
@@ -13,7 +15,6 @@ import javax.faces.event.ExceptionQueuedEventContext;
 public class JsfExceptionHandler extends ExceptionHandlerWrapper {
 
 	private final ExceptionHandler wrapped;
-	private final FacesContext FacesContext = javax.faces.context.FacesContext.getCurrentInstance();
 
 	@SuppressWarnings("deprecation")
 	public JsfExceptionHandler(final ExceptionHandler wrapped) {
@@ -32,18 +33,18 @@ public class JsfExceptionHandler extends ExceptionHandlerWrapper {
 		while (events.hasNext()) {
 			ExceptionQueuedEvent event = events.next();
 			ExceptionQueuedEventContext context = (ExceptionQueuedEventContext) event.getSource();
-
 			Throwable exception = context.getException();
+
+			while ((exception instanceof FacesException || exception instanceof EJBException
+					|| exception instanceof ELException) && exception.getCause() != null) {
+				exception = exception.getCause();
+			}
 
 			try {
 				if (exception instanceof ResourceAlreadyExistsException) {
-					FacesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							exception.getLocalizedMessage(), exception.getMessage()));
-				} else if (exception instanceof ResourceNotExistsException) {
-
+					FacesContext.getCurrentInstance().addMessage(null,
+							new FacesMessage(FacesMessage.SEVERITY_ERROR, exception.getMessage(), null));
 				}
-
-				FacesContext.renderResponse();
 			} finally {
 				events.remove();
 			}

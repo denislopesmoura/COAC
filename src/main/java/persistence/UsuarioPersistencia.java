@@ -8,6 +8,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import entities.Usuario;
+import exceptions.ResourceAlreadyExistsException;
 
 @Stateless
 public class UsuarioPersistencia extends EntidadePersistencia<Usuario> {
@@ -17,9 +18,11 @@ public class UsuarioPersistencia extends EntidadePersistencia<Usuario> {
 		super.setClasse(Usuario.class);
 	}
 
-	public void adicionarUsuario(final Usuario usuario) {
+	public void adicionarUsuario(final Usuario usuario) throws ResourceAlreadyExistsException {
 		if (!existePorCpf(usuario.getCpf())) {
 			super.persistir(usuario);
+		} else {
+			throw new ResourceAlreadyExistsException("O usuário com cpf " + usuario.getCpf() + " já existe");
 		}
 	}
 

@@ -9,9 +9,11 @@
 	<title>Cadastro do Usuário</title>
 </h:head>
 <h:body>
+	<h:outputLabel value="Cadastro de Usuários" />
+	<hr />
+
 	<h:form enctype="multipart/form-data">
-		<h:outputLabel value="Cadastro de Usuários" />
-		<hr />
+		<p:growl id="msg" showDetail="false" sticky="true" />
 
 		<h:outputLabel value="Foto: " />
 		<p:fileUpload value="#{usuariosMB.foto}" mode="simple"
@@ -38,24 +40,28 @@
 		<br />
 
 		<h:outputLabel value="Cep: " />
-		<h:inputText required="true" value="#{usuariosMB.endereco.cep}" />
+		<h:inputText required="true"
+			value="#{usuariosMB.usuario.endereco.cep}" />
 		<br />
 
 		<h:outputLabel value="Bairro: " />
-		<h:inputText required="true" value="#{usuariosMB.endereco.bairro}" />
+		<h:inputText required="true"
+			value="#{usuariosMB.usuario.endereco.bairro}" />
 		<br />
 
 		<h:outputLabel value="Rua: " />
-		<h:inputText required="true" value="#{usuariosMB.endereco.rua}" />
+		<h:inputText required="true"
+			value="#{usuariosMB.usuario.endereco.rua}" />
 		<br />
 
 		<h:outputLabel value="Número: " />
-		<h:inputText required="true" value="#{usuariosMB.endereco.numero}" />
+		<h:inputText required="true"
+			value="#{usuariosMB.usuario.endereco.numero}" />
 		<br />
 
 		<h:outputLabel value="Complemento: " />
 		<h:inputText required="false"
-			value="#{usuariosMB.endereco.complemento}" />
+			value="#{usuariosMB.usuario.endereco.complemento}" />
 		<br />
 
 		<h:outputLabel value="Comprovante de Residência: " />

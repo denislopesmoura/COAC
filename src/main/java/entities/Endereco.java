@@ -7,6 +7,9 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 /**
  * 
@@ -19,21 +22,33 @@ public class Endereco extends Entidade {
 
 	private static final long serialVersionUID = 1L;
 
+	@NotNull
+	@NotEmpty
 	@Column(nullable = false, name = "cep")
 	private String cep;
 
+	@NotNull
+	@NotEmpty
 	@Column(nullable = false, name = "bairro")
 	private String bairro;
 
+	@NotNull
+	@NotEmpty
 	@Column(nullable = false, name = "rua")
 	private String rua;
 
+	@NotNull
+	@NotEmpty
 	@Column(nullable = false, name = "numero")
 	private String numero;
 
+	@NotNull
+	@NotEmpty
 	@Column(nullable = true, name = "complemento")
 	private String complemento;
 
+	@NotNull
+	@Valid
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "comprovante_de_endereco_id")
 	private Arquivo comprovante;

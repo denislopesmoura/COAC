@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 /**
  * 
@@ -16,13 +18,18 @@ public class Arquivo extends Entidade {
 
 	private static final long serialVersionUID = 1L;
 
+	@NotNull
+	@NotEmpty
 	@Column(nullable = false, name = "nome")
 	private String nome;
 
+	@NotNull
 	@Lob
 	@Column(nullable = false, name = "conteudo")
 	private byte[] conteudo;
 
+	@NotNull
+	@NotEmpty
 	@Column(nullable = false, name = "tipo")
 	private String tipo;
 
@@ -49,5 +56,4 @@ public class Arquivo extends Entidade {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-
 }

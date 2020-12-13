@@ -13,6 +13,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 
 /**
  * 
@@ -27,37 +32,49 @@ import javax.persistence.TemporalType;
 public class Usuario extends Entidade {
 	private static final long serialVersionUID = 1L;
 
+	@Valid
+	@NotNull
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "foto_id")
 	private Arquivo foto;
 
+	@NotNull
+	@NotEmpty
 	@Column(nullable = false, name = "nome")
 	private String nome;
 
+	@Past
+	@NotNull
 	@Temporal(TemporalType.DATE)
 	@Column(nullable = false, name = "data_de_nascimento")
 	private Calendar dataNascimento;
 
+	@NotNull
+	@NotEmpty
 	@Column(nullable = false, unique = true, name = "cpf")
 	private String cpf;
 
+	@NotNull
+	@NotEmpty
+	@Email
 	@Column(nullable = false, name = "email")
 	private String email;
 
+	@NotNull
+	@Valid
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
 
+	@NotNull
+	@NotEmpty
 	@Column(nullable = false, name = "telefone")
 	private String telefone;
 
-//	@ManyToMany
-//	@JoinTable(name = "usuarios_cadastros", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "cadastro_id"))
-//	private List<Cadastro> cadastros;
-
-//	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//	@JoinColumn(name = "documento_de_homologacao_id")
-//	private Arquivo documentoHomologacao;
+	public Usuario() {
+		endereco = new Endereco();
+		foto = new Arquivo();
+	}
 
 	public Arquivo getFoto() {
 		return foto;
