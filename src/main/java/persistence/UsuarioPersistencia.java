@@ -4,11 +4,10 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
-import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import entities.Usuario;
-import exceptions.ResourceAlreadyExistsException;
+import exceptions.CpfUsuarioJaExisteException;
 
 @Stateless
 public class UsuarioPersistencia extends EntidadePersistencia<Usuario> {
@@ -18,45 +17,54 @@ public class UsuarioPersistencia extends EntidadePersistencia<Usuario> {
 		super.setClasse(Usuario.class);
 	}
 
-	public void adicionarUsuario(final Usuario usuario) throws ResourceAlreadyExistsException {
+	public void adicionarUsuario(final Usuario usuario) throws CpfUsuarioJaExisteException {
 		if (!existePorCpf(usuario.getCpf())) {
 			super.persistir(usuario);
 		} else {
-			throw new ResourceAlreadyExistsException("O usuário com cpf " + usuario.getCpf() + " já existe");
+			throw new CpfUsuarioJaExisteException("Já existe um usuário com esse cpf!");
 		}
 	}
 
-	public Usuario pegarUsuarioPorCpf(final String cpf) throws NoResultException {
-		TypedQuery<Usuario> typedQuery = this.getEntityManager().createNamedQuery("Usuario.pegarUsuarioPorCpf",
-				Usuario.class);
+	public Usuario pegarUsuarioPorCpf(final String cpf) {
+		try {
+			TypedQuery<Usuario> typedQuery = this.getEntityManager().createNamedQuery("Usuario.pegarUsuarioPorCpf",
+					Usuario.class);
 
-		typedQuery.setParameter(1, cpf);
+			typedQuery.setParameter(1, cpf);
 
-		return typedQuery.getSingleResult();
+			return typedQuery.getSingleResult();
+		} catch (Exception ex) {
+			return null;
+		}
 	}
 
 	public List<Usuario> pegarTodosUsuarios() {
-		TypedQuery<Usuario> typedQuery = this.getEntityManager().createNamedQuery("Usuario.pegarTodosUsuarios",
-				Usuario.class);
+		try {
+			TypedQuery<Usuario> typedQuery = this.getEntityManager().createNamedQuery("Usuario.pegarTodosUsuarios",
+					Usuario.class);
 
-		return typedQuery.getResultList();
+			return typedQuery.getResultList();
+		} catch (Exception ex) {
+			return null;
+		}
 	}
 
-	public void removerUsuarioPorId(final Long id) {
-		this.removerPorId(id);
+	public boolean removerUsuarioPorId(final Long id) {
+		return this.removerPorId(id);
 	}
 
-	public void atualizarUsuario(final Usuario usuario) {
-		this.atualizar(usuario);
+	public boolean atualizarUsuario(final Usuario usuario) {
+		return this.atualizar(usuario);
 	}
 
 	public boolean existePorCpf(final String cpf) {
-		try {
-			pegarUsuarioPorCpf(cpf);
+		boolean existe = false;
 
-			return true;
-		} catch (NoResultException ex) {
-			return false;
+		if (pegarUsuarioPorCpf(cpf) != null) {
+			existe = true;
 		}
+
+		return existe;
+
 	}
 }

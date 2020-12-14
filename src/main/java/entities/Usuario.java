@@ -1,6 +1,7 @@
 package entities;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,7 +18,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 
 /**
  * 
@@ -43,7 +43,6 @@ public class Usuario extends Entidade {
 	@Column(nullable = false, name = "nome")
 	private String nome;
 
-	@Past
 	@NotNull
 	@Temporal(TemporalType.DATE)
 	@Column(nullable = false, name = "data_de_nascimento")
@@ -53,6 +52,11 @@ public class Usuario extends Entidade {
 	@NotEmpty
 	@Column(nullable = false, unique = true, name = "cpf")
 	private String cpf;
+
+	@NotNull
+	@NotEmpty
+	@Column(nullable = false, name = "senha")
+	private String senha;
 
 	@NotNull
 	@NotEmpty
@@ -100,12 +104,27 @@ public class Usuario extends Entidade {
 		this.dataNascimento = dataNascimento;
 	}
 
+	public void setDataNascimento(Date dataNascimento) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(dataNascimento);
+
+		this.dataNascimento = calendar;
+	}
+
 	public String getCpf() {
 		return cpf;
 	}
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	public String getEmail() {

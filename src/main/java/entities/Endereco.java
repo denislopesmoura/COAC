@@ -42,8 +42,6 @@ public class Endereco extends Entidade {
 	@Column(nullable = false, name = "numero")
 	private String numero;
 
-	@NotNull
-	@NotEmpty
 	@Column(nullable = true, name = "complemento")
 	private String complemento;
 

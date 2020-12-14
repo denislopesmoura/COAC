@@ -29,26 +29,41 @@ public abstract class EntidadePersistencia<T extends Entidade> {
 		}
 	}
 
-	protected void removerPorId(final Long id) {
-		final T entidade = pegarPorId(id);
+	protected boolean removerPorId(final Long id) {
+		boolean removido = false;
+		T entidade = pegarPorId(id);
 
-		this.entityManager.remove(entidade);
-		this.entityManager.flush();
+		if (entidade != null) {
+			this.entityManager.remove(entidade);
+			this.entityManager.flush();
+
+			removido = true;
+		}
+
+		return removido;
 	}
 
-	protected void atualizar(final T entidade) {
+	protected boolean atualizar(final T entidade) {
+		boolean atualizado = false;
+
 		if (existePorId(entidade.getId())) {
 			this.entityManager.merge(entidade);
 			this.entityManager.flush();
+
+			atualizado = true;
 		}
+
+		return atualizado;
 	}
 
 	protected boolean existePorId(final Long id) {
-		if (this.entityManager.find(this.classe, id) == null) {
-			return false;
-		} else {
-			return true;
+		boolean existe = false;
+
+		if (this.entityManager.find(this.classe, id) != null) {
+			existe = true;
 		}
+
+		return existe;
 	}
 
 	protected void setClasse(final Class<T> classe) {

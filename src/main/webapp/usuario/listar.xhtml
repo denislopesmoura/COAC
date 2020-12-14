@@ -2,8 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
 	<title>Lista de Usuários</title>
@@ -12,52 +11,68 @@
 	<h:outputLabel value="Lista de Usuários" />
 	<hr />
 
-	<p:dataTable emptyMessage="Não há usuário cadastrados" var="usuario"
-		value="#{usuariosMB.usuarios}" resizableColumns="true"
-		tableStyle="width: auto;">
-		<p:column headerText="Id">
-			<h:outputText value="#{usuario.id}" />
-		</p:column>
-		<p:column headerText="Nome">
-			<h:outputText value="#{usuario.nome}" />
-		</p:column>
-		<p:column headerText="Cpf">
-			<h:outputText value="#{usuario.cpf}" />
-		</p:column>
-		<p:column headerText="Data de Nascimento">
-			<h:outputText value="#{usuario.dataNascimento.time}">
-				<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+	<h:messages globalOnly="true" />
+
+	<h:dataTable var="u" value="#{usuariosMB.usuarios}">
+		<h:column>
+			<f:facet name="header">Id</f:facet>
+			<h:outputText value="#{u.id}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Nome</f:facet>
+			<h:outputText value="#{u.nome}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Cpf</f:facet>
+			<h:outputText value="#{u.cpf}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Data de Nascimento</f:facet>
+			<h:outputText value="#{u.dataNascimento.time}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
 			</h:outputText>
-		</p:column>
-		<p:calendar></p:calendar>
-		<p:column headerText="Email">
-			<h:outputText value="#{usuario.email}" />
-		</p:column>
-		<p:column headerText="Telefone">
-			<h:outputText value="#{usuario.telefone}" />
-		</p:column>
-		<p:column headerText="Cep">
-			<h:outputText value="#{usuario.endereco.cep}" />
-		</p:column>
-		<p:column headerText="Bairro">
-			<h:outputText value="#{usuario.endereco.bairro}" />
-		</p:column>
-		<p:column headerText="Rua">
-			<h:outputText value="#{usuario.endereco.rua}" />
-		</p:column>
-		<p:column headerText="Número">
-			<h:outputText value="#{usuario.endereco.numero}" />
-		</p:column>
-		<p:column headerText="Complemento">
-			<h:outputText value="#{usuario.endereco.complemento}" />
-		</p:column>
-	</p:dataTable>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Email</f:facet>
+			<h:outputText value="#{u.email}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Telefone</f:facet>
+			<h:outputText value="#{u.telefone}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Cep</f:facet>
+			<h:outputText value="#{u.endereco.cep}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Bairro</f:facet>
+			<h:outputText value="#{u.endereco.bairro}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Rua</f:facet>
+			<h:outputText value="#{u.endereco.rua}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Número</f:facet>
+			<h:outputText value="#{u.endereco.numero}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Complemento</f:facet>
+			<h:outputText value="#{u.endereco.complemento}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Deletar</f:facet>
+			<h:commandButton value="Deletar Usuário"
+				action="#{usuariosMB.deletarUsuario}">
+				<f:param name="id" value="${u.id}" />
+			</h:commandButton>
+		</h:column>
+	</h:dataTable>
 
 	<h:form>
-		<div class="ui-g">
-			<div class="ui-g-12">
-				<h:commandButton value="Criar novo usuário"
-					styleClass="ui-priority-primary" action="cadastrar" />
+		<div>
+			<div>
+				<h:commandButton value="Criar novo usuário" action="cadastrar" />
 			</div>
 		</div>
 	</h:form>
