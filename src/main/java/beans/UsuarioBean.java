@@ -33,6 +33,8 @@ public class UsuarioBean {
 	}
 
 	public void deletarUsuario(Long id) {
+		System.out.println("Deletando...");
+
 		this.usuarioPersistencia.removerUsuarioPorId(id);
 	}
 

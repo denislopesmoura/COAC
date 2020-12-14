@@ -62,10 +62,10 @@
 		</h:column>
 		<h:column>
 			<f:facet name="header">Deletar</f:facet>
-			<h:commandButton value="Deletar Usuário"
-				action="#{usuariosMB.deletarUsuario}">
-				<f:param name="id" value="${u.id}" />
-			</h:commandButton>
+			<h:form>
+				<h:commandButton action="#{usuariosMB.deletarUsuario(u.id)}"
+					value="Deletar Usuário" />
+			</h:form>
 		</h:column>
 	</h:dataTable>
 
