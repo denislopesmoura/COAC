@@ -20,6 +20,7 @@ import entities.Arquivo;
 import entities.Usuario;
 import exceptions.CampoInvalidoException;
 import exceptions.CpfUsuarioJaExisteException;
+import util.CpfCnpjUtils;
 
 @Named(value = "usuariosMB")
 @SessionScoped
@@ -49,6 +50,7 @@ public class UsuarioMB implements Serializable {
 		try {
 			this.usuario.setDataNascimento(dataNascimento);
 			this.usuario.setFoto(arquivoConverter(foto));
+			this.usuario.setCpf(CpfCnpjUtils.formatarCpfCnpj(this.usuario.getCpf()));
 			this.usuario.getEndereco().setComprovante(arquivoConverter(comprovanteResidencia));
 
 			this.usuarioBean.criarUsuario(usuario);
@@ -67,30 +69,40 @@ public class UsuarioMB implements Serializable {
 	}
 
 	public String deletarUsuario(Long id) {
-
 		this.usuarioBean.deletarUsuario(id);
+		this.usuarios = this.usuarioBean.buscarTodosUsuarios();
 
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Usuário apagado com sucesso!"));
-
-		this.usuarios = this.usuarioBean.buscarTodosUsuarios();
 
 		return null;
 	}
 
 	public String editarUsuario() {
-		this.usuarioBean.atualizarUsuario(this.usuario);
-		limparCampos();
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Usuário Atualizado com sucesso!"));
-		return "/usuario/listar";
+		try {
+			this.usuarioBean.atualizarUsuario(this.usuario);
+
+			limparCampos();
+
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Usuário Atualizado com sucesso!"));
+
+			return "/usuario/listar";
+		} catch (CampoInvalidoException | IllegalArgumentException ex) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
+		}
+
+		return null;
 	}
+
 	public String irParaEdicaoPag(Usuario u) {
 		this.usuario = u;
 		this.dataNascimento = u.getDataNascimento().getTime();
+
 		return "/usuario/editar";
 	}
-	
+
 	public String voltarPagListagem() {
 		limparCampos();
+
 		return "/usuario/listar";
 	}
 

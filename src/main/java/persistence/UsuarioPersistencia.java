@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import entities.Usuario;
@@ -33,7 +34,7 @@ public class UsuarioPersistencia extends EntidadePersistencia<Usuario> {
 			typedQuery.setParameter(1, cpf);
 
 			return typedQuery.getSingleResult();
-		} catch (Exception ex) {
+		} catch (NoResultException ex) {
 			return null;
 		}
 	}

@@ -24,22 +24,18 @@ public class UsuarioBean {
 		this.usuarioPersistencia.adicionarUsuario(usuario);
 	}
 
-	public Usuario buscarUsuarioPorCpf(String cpf) {
-		return null;
-	}
-
 	public List<Usuario> buscarTodosUsuarios() {
 		return this.usuarioPersistencia.pegarTodosUsuarios();
 	}
 
 	public void deletarUsuario(Long id) {
-		System.out.println("Deletando...");
-
 		this.usuarioPersistencia.removerUsuarioPorId(id);
 	}
 
-	public boolean atualizarUsuario(Usuario usuarioAtualizado) {
-		return this.usuarioPersistencia.atualizarUsuario(usuarioAtualizado);
+	public boolean atualizarUsuario(Usuario usuario) throws CampoInvalidoException {
+		verificarUsuario(usuario);
+
+		return this.usuarioPersistencia.atualizarUsuario(usuario);
 	}
 
 	private void verificarUsuario(Usuario usuario) throws CampoInvalidoException {
@@ -53,6 +49,18 @@ public class UsuarioBean {
 
 		if (calculaIdade(usuario.getDataNascimento()) < 18) {
 			throw new CampoInvalidoException("A idade deve ser de no mínimo 18 anos!", "dataNascimento");
+		}
+
+		if (!verificaNome(usuario.getNome())) {
+			throw new CampoInvalidoException("O nome deve conter apenas letras e espaços em branco!", "nome");
+		}
+
+		if (!verificaSenha(usuario.getSenha())) {
+			throw new CampoInvalidoException("A senha deve conter apenas letras e dígitos!", "senha");
+		}
+
+		if (!verificarTelefone(usuario.getTelefone())) {
+			throw new CampoInvalidoException("O telefone é inválido!", "telefone");
 		}
 	}
 
@@ -71,5 +79,35 @@ public class UsuarioBean {
 		}
 
 		return idade;
+	}
+
+	private boolean verificaNome(final String nome) {
+		char[] chars = nome.toCharArray();
+
+		for (char c : chars) {
+			if (!Character.isLetter(c) && !Character.isSpaceChar(c)) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	private boolean verificaSenha(String senha) {
+		char[] chars = senha.toCharArray();
+
+		for (char c : chars) {
+			if (!Character.isLetter(c) && !Character.isDigit(c)) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	private boolean verificarTelefone(String telefone) {
+		System.out.println("Telefone: " + telefone);
+
+		return telefone.matches("(\\(?\\d{2}\\)?\\s?)?(\\d{4,5}\\-?\\d{4})");
 	}
 }

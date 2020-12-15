@@ -1,14 +1,17 @@
 package util;
 
 public class CpfCnpjUtils {
-	private static final int[] WEIGHT_SSN = { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
-	private static final int[] WEIGHT_TFN = { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
+	private static final int[] WEIGHT_CPF = { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+	private static final int[] WEIGHT_CNPJ = { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
 
 	private static int recursiveSum(int[] weight, char[] chr, int number) {
-		if (number <= 0)
+		if (number <= 0) {
 			return 0;
+		}
+
 		final int chrIndex = number - 1;
 		final int weightIndex = weight.length > chr.length ? number : chrIndex;
+
 		return (recursiveSum(weight, chr, chrIndex) + Character.getNumericValue(chr[chrIndex]) * weight[weightIndex]);
 	}
 
@@ -16,6 +19,7 @@ public class CpfCnpjUtils {
 		final char[] chr = str.toCharArray();
 		int sum = recursiveSum(weight, chr, chr.length);
 		sum = 11 - (sum % 11);
+
 		return sum > 9 ? 0 : sum;
 	}
 
@@ -23,20 +27,27 @@ public class CpfCnpjUtils {
 		final String number = tfn.substring(0, length);
 		final int digit1 = calculate(number, weight);
 		final int digit2 = calculate(number + digit1, weight);
+
 		return tfn.equals(number + digit1 + digit2);
 	}
 
-	public static boolean validaCpf(String cpf) {
-		if (cpf == null || !cpf.matches("\\d{11}") || cpf.matches(cpf.charAt(0) + "{11}"))
+	public static boolean validaCpf(final String cpf) {
+		if (cpf == null || !cpf.matches("\\d{11}") || cpf.matches(cpf.charAt(0) + "{11}")) {
 			return false;
+		}
 
-		return checkEquals(cpf, 9, WEIGHT_SSN);
+		return checkEquals(cpf, 9, WEIGHT_CPF);
 	}
 
-	public static boolean validaCnpj(String cnpj) {
-		if (cnpj == null || !cnpj.matches("\\d{14}") || cnpj.matches(cnpj.charAt(0) + "{14}"))
-			return false;
+	public static String formatarCpfCnpj(String cpfCnpj) {
+		return cpfCnpj.replaceAll("[^0-9]", "");
+	}
 
-		return checkEquals(cnpj, 12, WEIGHT_TFN);
+	public static boolean validaCnpj(final String cnpj) {
+		if (cnpj == null || !cnpj.matches("\\d{14}") || cnpj.matches(cnpj.charAt(0) + "{14}")) {
+			return false;
+		}
+
+		return checkEquals(cnpj, 12, WEIGHT_CNPJ);
 	}
 }
