@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<title>Edição do Usuário</title>
@@ -11,7 +12,7 @@
 	<h:outputLabel value="Edição de Usuários" />
 	<hr />
 
-	<h:messages globalOnly="true" />
+	<p:growl id="growl" showDetail="true" sticky="true" globalOnly="true" />
 
 	<h:form enctype="multipart/form-data">
 		<h:outputLabel value="Foto: " />
