@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Edição do Usuário</title>
+</h:head>
+<h:body>
+	<h:outputLabel value="Edição de Usuários" />
+	<hr />
+
+	<h:messages globalOnly="true" />
+
+	<h:form enctype="multipart/form-data">
+		<h:outputLabel value="Foto: " />
+		<h:inputFile required="true" value="#{usuariosMB.foto}" id="foto"
+			requiredMessage="A foto é um campo obrigatório!" />
+		<h:message for="foto" />
+		<br />
+
+		<h:outputLabel value="Nome: " />
+		<h:inputText required="true" value="#{usuariosMB.usuario.nome}"
+			id="nome" requiredMessage="O nome é um campo obrigatório!" />
+		<h:message for="nome" />
+		<br />
+
+		<h:outputLabel value="Cpf: " />
+		<h:inputText required="true" value="#{usuariosMB.usuario.cpf}"
+			id="cpf" requiredMessage="O cpf é um campo obrigatório!" />
+		<h:message for="cpf" />
+		<br />
+
+		<h:outputLabel value="Senha: " />
+		<h:inputSecret required="true" value="#{usuariosMB.usuario.senha}"
+			id="senha" requiredMessage="A senha é um campo obrigatório!" />
+		<h:message for="senha" />
+		<br />
+
+		<h:outputLabel value="Email: " />
+		<h:inputText required="true" value="#{usuariosMB.usuario.email}"
+			id="email" requiredMessage="O email é um campo obrigatório!"
+			validatorMessage="Esse email é inválido!" />
+		<h:message for="email" />
+		<br />
+
+		<h:outputLabel value="Data de Nascimento: " />
+		<h:inputText required="true" value="#{usuariosMB.dataNascimento}"
+			id="data-de-nascimento"
+			requiredMessage="A data de nascimento é um campo obrigatório!">
+			<f:convertDateTime pattern="dd/MM/yyyy" />
+		</h:inputText>
+		<h:message for="data-de-nascimento" />
+		<br />
+
+		<h:outputLabel value="Telefone: " />
+		<h:inputText required="true" value="#{usuariosMB.usuario.telefone}"
+			id="telefone" requiredMessage="O telefone é um campo obrigatório!" />
+		<h:message for="telefone" />
+		<br />
+
+		<h:outputLabel value="Cep: " />
+		<h:inputText required="true"
+			value="#{usuariosMB.usuario.endereco.cep}" id="cep"
+			requiredMessage="O cep é um campo obrigatório!" />
+		<h:message for="cep" />
+		<br />
+
+		<h:outputLabel value="Bairro: " />
+		<h:inputText required="true"
+			value="#{usuariosMB.usuario.endereco.bairro}" id="bairro"
+			requiredMessage="O bairro é um campo obrigatório!" />
+		<h:message for="bairro" />
+		<br />
+
+		<h:outputLabel value="Rua: " />
+		<h:inputText required="true"
+			value="#{usuariosMB.usuario.endereco.rua}" id="rua"
+			requiredMessage="A rua é um campo obrigatório!" />
+		<h:message for="rua" />
+		<br />
+
+		<h:outputLabel value="Número: " />
+		<h:inputText required="true"
+			value="#{usuariosMB.usuario.endereco.numero}" id="numero"
+			requiredMessage="O número é um campo obrigatório!" />
+		<h:message for="numero" />
+		<br />
+
+		<h:outputLabel value="Complemento: " />
+		<h:inputText value="#{usuariosMB.usuario.endereco.complemento}"
+			id="complemento" />
+		<h:message for="complemento" />
+		<br />
+
+		<h:outputLabel value="Comprovante de Residência: " />
+		<h:inputFile required="true"
+			value="#{usuariosMB.comprovanteResidencia}"
+			id="comprovante-de-residencia"
+			requiredMessage="O comprovante de residência é um campo obrigatório!" />
+		<h:message for="comprovante-de-residencia" />
+		<br />
+
+		<h:commandButton action="#{usuariosMB.editarUsuario}"
+			value="Editar usuário" />
+	</h:form>
+
+	<h:form>
+		<h:commandButton action="#{usuariosMB.voltarPagListagem}" value="X" />
+	</h:form>
+</h:body>
+</html>

@@ -36,8 +36,8 @@ public class UsuarioBean {
 		this.usuarioPersistencia.removerUsuarioPorId(id);
 	}
 
-	public Usuario atualizarUsuario(String email, Usuario usuarioAtualizado) {
-		return null;
+	public boolean atualizarUsuario(Usuario usuarioAtualizado) {
+		return this.usuarioPersistencia.atualizarUsuario(usuarioAtualizado);
 	}
 
 	private void verificarUsuario(Usuario usuario) throws CampoInvalidoException {

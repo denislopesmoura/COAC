@@ -67,7 +67,6 @@ public class UsuarioMB implements Serializable {
 	}
 
 	public String deletarUsuario(Long id) {
-		System.out.println("Id usuário: " + id);
 
 		this.usuarioBean.deletarUsuario(id);
 
@@ -76,6 +75,23 @@ public class UsuarioMB implements Serializable {
 		this.usuarios = this.usuarioBean.buscarTodosUsuarios();
 
 		return null;
+	}
+
+	public String editarUsuario() {
+		this.usuarioBean.atualizarUsuario(this.usuario);
+		limparCampos();
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Usuário Atualizado com sucesso!"));
+		return "/usuario/listar";
+	}
+	public String irParaEdicaoPag(Usuario u) {
+		this.usuario = u;
+		this.dataNascimento = u.getDataNascimento().getTime();
+		return "/usuario/editar";
+	}
+	
+	public String voltarPagListagem() {
+		limparCampos();
+		return "/usuario/listar";
 	}
 
 	private Arquivo arquivoConverter(Part arquivoUpado) throws IOException {
@@ -95,6 +111,7 @@ public class UsuarioMB implements Serializable {
 
 	private void limparCampos() {
 		usuario = new Usuario();
+		dataNascimento = new Date();
 	}
 
 	public Usuario getUsuario() {
