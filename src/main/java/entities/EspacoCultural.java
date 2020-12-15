@@ -3,26 +3,91 @@ package entities;
 import java.io.File;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 /**
  * 
  * @author Carlos
- *
+ * @author Weydson
  */
-public class EspacoCultural {
+@Entity
+@Table(name = "espacos_culturais")
+public class EspacoCultural extends Entidade{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	@NotEmpty
+	@Column(nullable = false, name = "email_espaco_cultural")
 	private String emailEspacoCultural;
+	
+	@NotEmpty
+	@Column(nullable = false, name = "razao_social")
 	private String razaoSocial;
+	
+	@NotEmpty
+	@Column(nullable = true, name = "nome_fantasia")
 	private String nomeFantasia;
+	
+	@NotEmpty
+	@Column(nullable = false, name = "cnpj")
 	private String cnpj;
+	
+	@NotNull 
+	@Valid
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name="endereco_id")
 	private Endereco endereco;
+	
+	@NotEmpty
+	@Column(nullable = false, name = "telefone")
 	private String telefone;
+	
+	@NotEmpty
+	@Column(nullable = false, name = "tipo_espaco_cultural")
 	private String tipoEspacoCultural;
+
+	@NotNull
+	@NotEmpty
+	@Column(nullable = true, name = "linguagens_culturais")
 	private List<String> linguagensCulturais;
+	
+	@NotNull
+	@Column(nullable = false, name = "modalidades")
 	private List<String> modalidades;
+	
+	@NotNull
+	@Column(nullable = false, name = "imagens")
 	private List<File> imagens;
+	
+	@NotEmpty
+	@Column(nullable = false, name = "descricao")
 	private String descricao;
+	
+	@NotEmpty
+	@Column(nullable = true, name = "facebook")
 	private String facebook;
+	
+	@NotEmpty
+	@Column(nullable = true, name = "instagram")
 	private String instagram;
+	
+	@NotEmpty
+	@Column(nullable = true, name = "youtube")
 	private String youtube;
+	
+	@NotEmpty
+	@Column(nullable = true, name = "repositorio_online")
 	private String repositorioOnline;
 
 	public String getEmailEspacoCultural() {
