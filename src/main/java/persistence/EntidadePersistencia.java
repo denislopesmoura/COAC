@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import entities.Entidade;
+import exceptions.PersistenciaException;
 
 /**
  * 
@@ -17,43 +18,43 @@ public abstract class EntidadePersistencia<T extends Entidade> {
 
 	private Class<T> classe;
 
-	protected void persistir(final T entidade) {
-		this.entityManager.persist(entidade);
-	}
-
-	protected T pegarPorId(final Long id) {
-		if (existePorId(id)) {
-			return this.entityManager.find(this.classe, id);
-		} else {
-			return null;
+	protected void persistir(final T entidade) throws PersistenciaException {
+		try {
+			this.entityManager.persist(entidade);
+		} catch (Exception ex) {
+			throw new PersistenciaException("Ocorreu um problema ao salvar a entidade, por favor, tente novamente");
 		}
 	}
 
-	protected boolean removerPorId(final Long id) {
-		boolean removido = false;
+	protected T pegarPorId(final Long id) throws PersistenciaException {
+		if (existePorId(id)) {
+			return this.entityManager.find(this.classe, id);
+		} else {
+			throw new PersistenciaException(
+					"Não foi possível encontrar a entidade " + classe.getCanonicalName() + " com id " + id);
+		}
+	}
+
+	protected void removerPorId(final Long id) throws PersistenciaException {
 		T entidade = pegarPorId(id);
 
 		if (entidade != null) {
 			this.entityManager.remove(entidade);
 			this.entityManager.flush();
-
-			removido = true;
+		} else {
+			throw new PersistenciaException(
+					"Não foi possível remover a entidade " + classe.getCanonicalName() + " com id " + id);
 		}
-
-		return removido;
 	}
 
-	protected boolean atualizar(final T entidade) {
-		boolean atualizado = false;
-
+	protected void atualizar(final T entidade) throws PersistenciaException {
 		if (existePorId(entidade.getId())) {
 			this.entityManager.merge(entidade);
 			this.entityManager.flush();
-
-			atualizado = true;
+		} else {
+			throw new PersistenciaException("Não foi possível atualizar a entidade " + classe.getCanonicalName()
+					+ " com id " + entidade.getId());
 		}
-
-		return atualizado;
 	}
 
 	protected boolean existePorId(final Long id) {

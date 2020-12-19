@@ -6,108 +6,119 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Cadastro do Usuário</title>
 </h:head>
 <h:body>
-	<h:outputLabel value="Cadastro de Usuários" />
-	<hr />
+	<p:outputLabel value="Cadastro de Usuários" />
+	<p:separator />
 
-	<p:growl id="growl" showDetail="true" sticky="true" globalOnly="true" />
+	<p:growl id="growl" sticky="true" globalOnly="true" />
 
-	<h:form enctype="multipart/form-data">
-		<h:outputLabel value="Foto: " />
-		<h:inputFile required="true" value="#{usuariosMB.foto}" id="foto"
-			requiredMessage="A foto é um campo obrigatório!" />
-		<h:message for="foto" />
-		<br />
+	<h:form enctype="multipart/form-data" id="form-usuario">
+		<h:panelGrid columns="3">
+			<p:outputLabel value="Foto" for="foto" />
+			<p:fileUpload required="true" value="#{usuariosMB.foto}" id="foto"
+				requiredMessage="A foto é um campo obrigatório!" mode="simple"
+				skinSimple="true" accept="image/*"
+				invalidFileMessage="A foto deve ser uma imagem!" />
+			<p:message for="foto" />
 
-		<h:outputLabel value="Nome: " />
-		<h:inputText required="true" value="#{usuariosMB.usuario.nome}"
-			id="nome" requiredMessage="O nome é um campo obrigatório!" />
-		<h:message for="nome" />
-		<br />
+			<p:outputLabel value="Nome" for="nome" />
+			<p:inputText required="true" value="#{usuariosMB.usuario.nome}"
+				id="nome" requiredMessage="O nome é um campo obrigatório!"
+				placeholder="Insira o nome aqui" />
+			<p:message for="nome" />
 
-		<h:outputLabel value="Cpf: " />
-		<h:inputText required="true" value="#{usuariosMB.usuario.cpf}"
-			id="cpf" requiredMessage="O cpf é um campo obrigatório!" />
-		<h:message for="cpf" />
-		<br />
+			<p:outputLabel value="Cpf" for="cpf" />
+			<p:inputMask required="true" value="#{usuariosMB.usuario.cpf}"
+				id="cpf" requiredMessage="O cpf é um campo obrigatório!"
+				placeholder="Insira o cpf aqui" mask="999.999.999-99"
+				autocomplete="off" />
+			<p:message for="cpf" />
 
-		<h:outputLabel value="Senha: " />
-		<h:inputSecret required="true" value="#{usuariosMB.usuario.senha}"
-			id="senha" requiredMessage="A senha é um campo obrigatório!" />
-		<h:message for="senha" />
-		<br />
+			<p:outputLabel value="Senha" for="senha" />
+			<p:password required="true" value="#{usuariosMB.usuario.senha}"
+				id="senha" requiredMessage="A senha é um campo obrigatório!"
+				placeholder="Insira a senha aqui" />
+			<p:message for="senha" />
 
-		<h:outputLabel value="Email: " />
-		<h:inputText required="true" value="#{usuariosMB.usuario.email}"
-			id="email" requiredMessage="O email é um campo obrigatório!"
-			validatorMessage="Esse email é inválido!" />
-		<h:message for="email" />
-		<br />
+			<p:outputLabel value="Email" for="email" />
+			<p:inputText required="true" value="#{usuariosMB.usuario.email}"
+				id="email" requiredMessage="O email é um campo obrigatório!"
+				validatorMessage="Esse email é inválido!"
+				placeholder="Insira o email aqui" />
+			<p:message for="email" />
 
-		<h:outputLabel value="Data de Nascimento: " />
-		<h:inputText required="true" value="#{usuariosMB.dataNascimento}"
-			id="data-de-nascimento"
-			requiredMessage="A data de nascimento é um campo obrigatório!">
-			<f:convertDateTime pattern="dd/MM/yyyy" />
-		</h:inputText>
-		<h:message for="data-de-nascimento" />
-		<br />
+			<p:outputLabel value="Data de Nascimento" for="data-de-nascimento" />
+			<p:inputMask required="true" value="#{usuariosMB.dataNascimento}"
+				id="data-de-nascimento"
+				requiredMessage="A data de nascimento é um campo obrigatório!"
+				placeholder="Insira a data de nascimento aqui" mask="99/99/9999"
+				autocomplete="off">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</p:inputMask>
+			<p:message for="data-de-nascimento" />
 
-		<h:outputLabel value="Telefone: " />
-		<h:inputText required="true" value="#{usuariosMB.usuario.telefone}"
-			id="telefone" requiredMessage="O telefone é um campo obrigatório!" />
-		<h:message for="telefone" />
-		<br />
+			<p:outputLabel value="Telefone" for="telefone" />
+			<p:inputMask required="true" value="#{usuariosMB.usuario.telefone}"
+				id="telefone" requiredMessage="O telefone é um campo obrigatório!"
+				placeholder="Insira o telefone aqui" mask="(99) 99999-9999"
+				autocomplete="off" />
+			<p:message for="telefone" />
 
-		<h:outputLabel value="Cep: " />
-		<h:inputText required="true"
-			value="#{usuariosMB.usuario.endereco.cep}" id="cep"
-			requiredMessage="O cep é um campo obrigatório!" />
-		<h:message for="cep" />
-		<br />
+			<p:outputLabel value="Cep" for="cep" />
+			<p:inputMask required="true"
+				value="#{usuariosMB.usuario.endereco.cep}" id="cep"
+				requiredMessage="O cep é um campo obrigatório!"
+				placeholder="Insira o cep aqui" mask="99999-999" autocomplete="off" />
+			<p:message for="cep" />
 
-		<h:outputLabel value="Bairro: " />
-		<h:inputText required="true"
-			value="#{usuariosMB.usuario.endereco.bairro}" id="bairro"
-			requiredMessage="O bairro é um campo obrigatório!" />
-		<h:message for="bairro" />
-		<br />
+			<p:outputLabel value="Bairro" for="bairro" />
+			<p:inputText required="true"
+				value="#{usuariosMB.usuario.endereco.bairro}" id="bairro"
+				requiredMessage="O bairro é um campo obrigatório!"
+				placeholder="Insira o bairro aqui" />
+			<p:message for="bairro" />
 
-		<h:outputLabel value="Rua: " />
-		<h:inputText required="true"
-			value="#{usuariosMB.usuario.endereco.rua}" id="rua"
-			requiredMessage="A rua é um campo obrigatório!" />
-		<h:message for="rua" />
-		<br />
+			<p:outputLabel value="Rua" for="rua" />
+			<p:inputText required="true"
+				value="#{usuariosMB.usuario.endereco.rua}" id="rua"
+				requiredMessage="A rua é um campo obrigatório!"
+				placeholder="Insira a rua aqui" />
+			<p:message for="rua" />
 
-		<h:outputLabel value="Número: " />
-		<h:inputText required="true"
-			value="#{usuariosMB.usuario.endereco.numero}" id="numero"
-			requiredMessage="O número é um campo obrigatório!" />
-		<h:message for="numero" />
-		<br />
+			<p:outputLabel value="Número" for="numero" />
+			<p:inputText required="true"
+				value="#{usuariosMB.usuario.endereco.numero}" id="numero"
+				requiredMessage="O número é um campo obrigatório!"
+				placeholder="Insira o número aqui" />
+			<p:message for="numero" />
 
-		<h:outputLabel value="Complemento: " />
-		<h:inputText value="#{usuariosMB.usuario.endereco.complemento}"
-			id="complemento" />
-		<h:message for="complemento" />
-		<br />
+			<p:outputLabel value="Complemento" for="complemento" />
+			<p:inputText value="#{usuariosMB.usuario.endereco.complemento}"
+				id="complemento" placeholder="Insira o complemento aqui" />
+			<p:message for="complemento" />
 
-		<h:outputLabel value="Comprovante de Residência: " />
-		<h:inputFile required="true"
-			value="#{usuariosMB.comprovanteResidencia}"
-			id="comprovante-de-residencia"
-			requiredMessage="O comprovante de residência é um campo obrigatório!" />
-		<h:message for="comprovante-de-residencia" />
-		<br />
+			<p:outputLabel value="Comprovante de Residência"
+				for="comprovante-de-residencia" />
+			<p:fileUpload required="true"
+				value="#{usuariosMB.comprovanteResidencia}"
+				id="comprovante-de-residencia"
+				requiredMessage="O comprovante de residência é um campo obrigatório!"
+				mode="simple" skinSimple="true" accept="application/pdf, image/*"
+				invalidFileMessage="O comprovante de residência deve ser uma imagem ou um pdf!" />
+			<p:message for="comprovante-de-residencia" />
 
-		<h:commandButton action="#{usuariosMB.criarUsuario}"
-			value="Criar usuário" />
+			<p:commandButton value="Criar Usuário"
+				action="#{usuariosMB.criarUsuario}" ajax="false" />
+		</h:panelGrid>
 	</h:form>
 	<h:form>
-		<h:commandButton action="#{usuariosMB.voltarPagListagem}" value="X" />
+		<h:panelGrid columns="1">
+			<p:commandButton value="Voltar"
+				action="#{usuariosMB.voltarParaPaginaListagem}" ajax="false" />
+		</h:panelGrid>
 	</h:form>
 </h:body>
 </html>

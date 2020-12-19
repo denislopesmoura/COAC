@@ -17,90 +17,87 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "trabalhadores")
-public class Trabalhador extends Entidade{
-	/**
-	 * 
-	 */
+public class Trabalhador extends Entidade {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@NotEmpty
 	@Column(nullable = false, name = "nome_artistico")
 	private String nomeArtistico;
-	
+
 	@NotEmpty
 	@Column(nullable = true, name = "mei")
 	private String mei;
-	
+
 	@NotEmpty
 	@Column(nullable = false, name = "cor")
 	private String cor;
-	
+
 	@NotEmpty
 	@Column(nullable = false, name = "genero")
 	private String genero;
-	
+
 	@NotEmpty
 	@Column(nullable = false, name = "escolaridade")
 	private String escolaridade;
-	
+
 	@NotEmpty
 	@Column(nullable = false, name = "profissao")
 	private String profissao;
-	
+
 	@NotNull
 	@Column(nullable = false, name = "drt")
 	private boolean drt;
-	
+
 //	@NotNull
 //	@Column(nullable = true, name = "espaco_cultural")
 //	private List<EspacoCultural> espacoCultural;
-	
+
 	@NotNull
 	@NotEmpty
 	@Column(nullable = false, name = "segmento_cultural")
 	private List<String> segmentoCultural;
-	
+
 	@NotNull
 	@Column(nullable = false, name = "curriculo_artistico")
 	private File curriculoArtistico;
-	
+
 	@NotEmpty
 	@Column(nullable = true, name = "facebook")
 	private String facebook;
-	
+
 	@NotEmpty
 	@Column(nullable = true, name = "instagram")
 	private String instagram;
-	
+
 	@NotEmpty
 	@Column(nullable = true, name = "youtube")
 	private String youtube;
-	
+
 	@NotEmpty
 	@Column(nullable = true, name = "repositorio_online")
 	private String repositorioOnline;
-	
+
 	@NotEmpty
 	@Column(nullable = false, name = "renda_mensal_cultural")
 	private String rendaMensalProducoesCulturais;
-	
+
 	@NotEmpty
 	@Column(nullable = false, name = "renda_anual_2018")
 	private String rendaAnual2018;
-	
+
 	@NotEmpty
 	@Column(nullable = false, name = "beneficios")
 	private List<String> beneficios;
-	
+
 	@NotEmpty
 	@Column(nullable = true, name = "homologado_cadastro")
 	private List<File> cadastros;
-	
+
 	@NotEmpty
 	@Column(nullable = true, name = "documento_homologacao")
 	private File documentoHomologacao;
 
-	
 	public String getNomeArtistico() {
 		return nomeArtistico;
 	}

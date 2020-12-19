@@ -6,84 +6,69 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Lista de Usuários</title>
 </h:head>
 <h:body>
-	<h:outputLabel value="Lista de Usuários" />
-	<hr />
+	<p:outputLabel value="Lista de Usuários" />
+	<p:separator />
 
-	<p:growl id="growl" showDetail="true" sticky="true" globalOnly="true" />
+	<p:growl id="growl" sticky="true" globalOnly="true" />
 
-	<h:dataTable var="u" value="#{usuariosMB.usuarios}">
-		<h:column>
-			<f:facet name="header">Id</f:facet>
+	<p:dataTable var="u" value="#{usuariosMB.usuarios}"
+		tableStyle="table-layout: auto;"
+		emptyMessage="Não há usuário cadastrados." id="tabela-usuario">
+		<p:column headerText="Id">
 			<h:outputText value="#{u.id}" />
-		</h:column>
-		<h:column>
-			<f:facet name="header">Nome</f:facet>
+		</p:column>
+		<p:column headerText="Nome">
 			<h:outputText value="#{u.nome}" />
-		</h:column>
-		<h:column>
-			<f:facet name="header">Cpf</f:facet>
+		</p:column>
+		<p:column headerText="Cpf">
 			<h:outputText value="#{u.cpf}" />
-		</h:column>
-		<h:column>
-			<f:facet name="header">Data de Nascimento</f:facet>
+		</p:column>
+		<p:column headerText="Data de Nascimento">
 			<h:outputText value="#{u.dataNascimento.time}">
 				<f:convertDateTime pattern="dd/MM/yyyy" />
 			</h:outputText>
-		</h:column>
-		<h:column>
-			<f:facet name="header">Email</f:facet>
+		</p:column>
+		<p:column headerText="Email">
 			<h:outputText value="#{u.email}" />
-		</h:column>
-		<h:column>
-			<f:facet name="header">Telefone</f:facet>
+		</p:column>
+		<p:column headerText="Telefone">
 			<h:outputText value="#{u.telefone}" />
-		</h:column>
-		<h:column>
-			<f:facet name="header">Cep</f:facet>
+		</p:column>
+		<p:column headerText="Cep">
 			<h:outputText value="#{u.endereco.cep}" />
-		</h:column>
-		<h:column>
-			<f:facet name="header">Bairro</f:facet>
+		</p:column>
+		<p:column headerText="Bairro">
 			<h:outputText value="#{u.endereco.bairro}" />
-		</h:column>
-		<h:column>
-			<f:facet name="header">Rua</f:facet>
+		</p:column>
+		<p:column headerText="Rua">
 			<h:outputText value="#{u.endereco.rua}" />
-		</h:column>
-		<h:column>
-			<f:facet name="header">Número</f:facet>
+		</p:column>
+		<p:column headerText="Número">
 			<h:outputText value="#{u.endereco.numero}" />
-		</h:column>
-		<h:column>
-			<f:facet name="header">Complemento</f:facet>
+		</p:column>
+		<p:column headerText="Complemento">
 			<h:outputText value="#{u.endereco.complemento}" />
-		</h:column>
-		<h:column>
-			<f:facet name="header">Deletar</f:facet>
+		</p:column>
+		<p:column headerText="Deletar">
 			<h:form>
-				<h:commandButton action="#{usuariosMB.deletarUsuario(u.id)}"
-					value="Deletar Usuário" />
+				<p:commandButton action="#{usuariosMB.deletarUsuario(u.id)}"
+					value="Deletar Usuário" ajax="false" />
 			</h:form>
-		</h:column>
-		<h:column>
-			<f:facet name="header">Editar</f:facet>
+		</p:column>
+		<p:column headerText="Editar">
 			<h:form>
-				<h:commandButton action="#{usuariosMB.irParaEdicaoPag(u)}"
-					value="Editar Usuário" />
+				<p:commandButton action="#{usuariosMB.irParaPaginaEdicao(u)}"
+					value="Editar Usuário" ajax="false" />
 			</h:form>
-		</h:column>
+		</p:column>
+	</p:dataTable>
 
-	</h:dataTable>
+	<p:separator />
 
-	<h:form>
-		<div>
-			<div>
-				<h:commandButton value="Criar novo usuário" action="cadastrar" />
-			</div>
-		</div>
-	</h:form>
+	<p:button value="Criar Novo Usuário" outcome="/usuario/cadastrar.xhtml" />
 </h:body>
 </html>
