@@ -1,27 +1,43 @@
 package persistence;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
 
+import entities.Grupo;
 import entities.Usuario;
 import exceptions.PersistenciaException;
+import util.AuthenticationUtils;
 
 @Stateless
 public class UsuarioPersistencia extends EntidadePersistencia<Usuario> {
 
 	@PostConstruct
 	public void configurar() {
-		super.setClasse(Usuario.class);
+		this.setClasse(Usuario.class);
 	}
 
 	public void adicionarUsuario(final Usuario usuario) throws PersistenciaException {
 		if (!existePorCpf(usuario.getCpf())) {
-			super.persistir(usuario);
+			try {
+				usuario.setSenha(AuthenticationUtils.encodeSHA256(usuario.getSenha()));
+			} catch (UnsupportedEncodingException | NoSuchAlgorithmException ex) {
+				throw new PersistenciaException("Ocorreu um problema ao tentar encriptar a senha");
+			}
+
+			Grupo grupo = new Grupo();
+
+			grupo.setCpf(usuario.getCpf());
+			grupo.setNome(Grupo.GRUPO_USUARIOS);
+
+			this.persistir(usuario);
+			this.getEntityManager().persist(grupo);
 		} else {
-			throw new PersistenciaException("Já existe um usuário com esse cpf!");
+			throw new PersistenciaException("Já existe um usuário com esse cpf");
 		}
 	}
 

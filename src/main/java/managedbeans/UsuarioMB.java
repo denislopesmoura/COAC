@@ -71,7 +71,7 @@ public class UsuarioMB implements Serializable {
 
 			alertarUsuario(FacesMessage.SEVERITY_INFO, "Usuário criado com sucesso!");
 
-			return "/usuario/listar";
+			return "/login";
 		} catch (PersistenciaException ex) {
 			alertarUsuario(FacesMessage.SEVERITY_ERROR, ex.getMessage());
 		} catch (EJBException ex) {

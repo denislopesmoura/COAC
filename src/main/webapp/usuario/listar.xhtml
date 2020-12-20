@@ -69,6 +69,9 @@
 
 	<p:separator />
 
-	<p:button value="Criar Novo Usuário" outcome="/usuario/cadastrar.xhtml" />
+	<h:form>
+		<p:commandButton value="Logout" action="#{loginUsuarioMB.logout}"
+			ajax="false" />
+	</h:form>
 </h:body>
 </html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Login do Usuário</title>
+</h:head>
+<h:body>
+	<p:outputLabel value="Login do Usuário" />
+	<p:separator />
+
+	<p:growl id="growl" sticky="true" globalOnly="true" />
+
+	<h:form enctype="multipart/form-data" id="form-usuario">
+		<p:panelGrid columns="3"
+			styleClass="p-align-baseline ui-fluid ui-noborder">
+			<p:outputLabel value="Cpf" for="cpf" />
+			<p:inputMask required="true" value="#{loginUsuarioMB.cpf}" id="cpf"
+				requiredMessage="O cpf é um campo obrigatório!"
+				placeholder="Insira o cpf aqui" mask="999.999.999-99"
+				autocomplete="off" />
+			<p:message for="cpf" />
+
+			<p:outputLabel value="Senha" for="senha" />
+			<p:password required="true" value="#{loginUsuarioMB.senha}"
+				id="senha" requiredMessage="A senha é um campo obrigatório!"
+				placeholder="Insira a senha aqui" />
+			<p:message for="senha" />
+
+			<p:commandButton value="Entrar" action="#{loginUsuarioMB.login}"
+				ajax="false" />
+		</p:panelGrid>
+	</h:form>
+	<h:form>
+		<p:commandLink value="Cadastrar uma conta" action="/index" />
+	</h:form>
+</h:body>
+</html>

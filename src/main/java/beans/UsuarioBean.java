@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import entities.Usuario;
 import exceptions.PersistenciaException;
 import persistence.UsuarioPersistencia;
+import util.CpfCnpjUtils;
 import util.UsuarioUtils;
 
 /**
@@ -40,5 +41,13 @@ public class UsuarioBean {
 		UsuarioUtils.verificarUsuario(usuario);
 
 		this.usuarioPersistencia.atualizarUsuario(usuario);
+	}
+
+	public Usuario pegarUsuarioPorCpf(String cpf) throws PersistenciaException {
+		if (!CpfCnpjUtils.validaCpf(cpf)) {
+			throw new IllegalArgumentException("O cpf não é válido!");
+		}
+
+		return this.usuarioPersistencia.pegarUsuarioPorCpf(cpf);
 	}
 }

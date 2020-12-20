@@ -7,12 +7,6 @@
 		<param-name>javax.faces.ENABLE_CDI_RESOLVER_CHAIN</param-name>
 		<param-value>true</param-value>
 	</context-param>
-	<session-config>
-		<session-timeout>30</session-timeout>
-	</session-config>
-	<welcome-file-list>
-		<welcome-file>index.xhtml</welcome-file>
-	</welcome-file-list>
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -22,4 +16,39 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
+
+	<session-config>
+		<session-timeout>300</session-timeout>
+	</session-config>
+	<welcome-file-list>
+		<welcome-file>index.xhtml</welcome-file>
+	</welcome-file-list>
+
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<realm-name>coacRealm</realm-name>
+		<form-login-config>
+			<form-login-page>/login.xhtml</form-login-page>
+			<form-error-page>/login.xhtml</form-error-page>
+		</form-login-config>
+	</login-config>
+
+	<security-role>
+		<description />
+		<role-name>usuarios</role-name>
+	</security-role>
+
+	<security-constraint>
+		<display-name>Restrito para usuários</display-name>
+		<web-resource-collection>
+			<web-resource-name>Acesso Restrito</web-resource-name>
+			<url-pattern>/usuario/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>usuarios</role-name>
+		</auth-constraint>
+		<user-data-constraint>
+			<transport-guarantee>NONE</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
 </web-app>
