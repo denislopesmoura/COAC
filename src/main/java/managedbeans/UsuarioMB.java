@@ -1,9 +1,8 @@
 package managedbeans;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -11,8 +10,12 @@ import javax.ejb.EJBException;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FilenameUtils;
 import org.primefaces.model.file.UploadedFile;
@@ -22,14 +25,13 @@ import entities.Arquivo;
 import entities.Usuario;
 import exceptions.ArquivoException;
 import exceptions.PersistenciaException;
-import util.CpfCnpjUtils;
 
 /**
  * 
  * @author Carlos
  *
  */
-@Named(value = "usuariosMB")
+@Named(value = "usuarioMB")
 @SessionScoped
 public class UsuarioMB implements Serializable {
 
@@ -39,7 +41,6 @@ public class UsuarioMB implements Serializable {
 	private UsuarioBean usuarioBean;
 
 	private Usuario usuario;
-	private List<Usuario> usuarios;
 
 	private UploadedFile foto;
 	private UploadedFile comprovanteResidencia;
@@ -48,69 +49,46 @@ public class UsuarioMB implements Serializable {
 
 	@PostConstruct
 	public void iniciar() {
-		try {
-			this.usuario = new Usuario();
-			this.usuarios = this.usuarioBean.buscarTodosUsuarios();
-			this.dataNascimento = new Date();
-		} catch (PersistenciaException ex) {
-			alertarUsuario(FacesMessage.SEVERITY_ERROR, ex.getMessage());
-		}
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		Map<String, Object> sessionMap = externalContext.getSessionMap();
+
+		this.usuario = (Usuario) sessionMap.get("User");
+		this.dataNascimento = this.usuario.getDataNascimento().getTime();
 	}
 
-	public String criarUsuario() throws IOException {
+	public String deletarUsuario() {
 		try {
-			this.usuario.setDataNascimento(dataNascimento);
-			this.usuario.setFoto(arquivoConverter(foto));
-			this.usuario.setCpf(CpfCnpjUtils.formatarCpfCnpj(this.usuario.getCpf()));
-			this.usuario.getEndereco().setComprovante(arquivoConverter(comprovanteResidencia));
+			this.usuarioBean.deletarUsuario(usuario.getId());
+			this.usuario = null;
 
-			this.usuarioBean.criarUsuario(usuario);
-			this.usuarios = this.usuarioBean.buscarTodosUsuarios();
+			FacesContext context = FacesContext.getCurrentInstance();
+			HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
 
-			limparCampos();
-
-			alertarUsuario(FacesMessage.SEVERITY_INFO, "Usuário criado com sucesso!");
-
-			return "/login";
-		} catch (PersistenciaException ex) {
-			alertarUsuario(FacesMessage.SEVERITY_ERROR, ex.getMessage());
-		} catch (EJBException ex) {
-			Exception e = ex.getCausedByException();
-			alertarUsuario(FacesMessage.SEVERITY_INFO, e.getMessage());
-		} catch (ArquivoException ex) {
-			alertarUsuario(FacesMessage.SEVERITY_INFO, ex.getMessage());
-		}
-
-		return null;
-	}
-
-	public String deletarUsuario(final Long id) {
-		try {
-			this.usuarioBean.deletarUsuario(id);
-			this.usuarios = this.usuarioBean.buscarTodosUsuarios();
+			request.logout();
+			((HttpSession) context.getExternalContext().getSession(false)).invalidate();
 
 			alertarUsuario(FacesMessage.SEVERITY_INFO, "Usuário apagado com sucesso!");
 		} catch (PersistenciaException ex) {
 			alertarUsuario(FacesMessage.SEVERITY_ERROR, ex.getMessage());
+		} catch (ServletException e) {
+			alertarUsuario(FacesMessage.SEVERITY_ERROR, "Falha ao realizar logout!");
+			e.printStackTrace();
 		}
 
-		return null;
+		return "/login";
 	}
 
-	public String editarUsuario() {
+	public String editar() {
 		try {
 			this.usuario.setDataNascimento(dataNascimento);
 			this.usuario.setFoto(arquivoConverter(foto));
-			this.usuario.setCpf(CpfCnpjUtils.formatarCpfCnpj(this.usuario.getCpf()));
 			this.usuario.getEndereco().setComprovante(arquivoConverter(comprovanteResidencia));
 
 			this.usuarioBean.atualizarUsuario(this.usuario);
 
-			limparCampos();
-
 			alertarUsuario(FacesMessage.SEVERITY_INFO, "Usuário atualizado com sucesso!");
 
-			return "/usuario/listar";
+			return "/usuario/usuario";
 		} catch (PersistenciaException ex) {
 			alertarUsuario(FacesMessage.SEVERITY_ERROR, ex.getMessage());
 		} catch (EJBException ex) {
@@ -123,17 +101,9 @@ public class UsuarioMB implements Serializable {
 		return null;
 	}
 
-	public String irParaPaginaEdicao(final Usuario u) {
-		this.usuario = u;
-		this.dataNascimento = u.getDataNascimento().getTime();
-
-		return "/usuario/editar";
-	}
-
-	public String voltarParaPaginaListagem() {
-		limparCampos();
-
-		return "/usuario/listar";
+	private void alertarUsuario(final Severity gravidade, final String msg) {
+		FacesMessage mensagem = new FacesMessage(gravidade, msg, null);
+		FacesContext.getCurrentInstance().addMessage(null, mensagem);
 	}
 
 	private Arquivo arquivoConverter(final UploadedFile arquivoUpado) throws ArquivoException {
@@ -150,30 +120,12 @@ public class UsuarioMB implements Serializable {
 		return arquivo;
 	}
 
-	private void limparCampos() {
-		usuario = new Usuario();
-		dataNascimento = new Date();
-	}
-
-	private void alertarUsuario(final Severity gravidade, final String msg) {
-		FacesMessage mensagem = new FacesMessage(gravidade, msg, null);
-		FacesContext.getCurrentInstance().addMessage(null, mensagem);
-	}
-
 	public Usuario getUsuario() {
 		return usuario;
 	}
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-	}
-
-	public Date getDataNascimento() {
-		return dataNascimento;
-	}
-
-	public void setDataNascimento(Date dataNascimento) {
-		this.dataNascimento = dataNascimento;
 	}
 
 	public UploadedFile getFoto() {
@@ -192,11 +144,12 @@ public class UsuarioMB implements Serializable {
 		this.comprovanteResidencia = comprovanteResidencia;
 	}
 
-	public List<Usuario> getUsuarios() {
-		return usuarios;
+	public Date getDataNascimento() {
+		return dataNascimento;
 	}
 
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
+
 }

@@ -17,6 +17,7 @@ public class Grupo implements Serializable {
 	private String cpf;
 
 	public static final String GRUPO_USUARIOS = "usuarios";
+	public static final String GRUPO_ADMIN = "administradores";
 
 	@Column(name = "nome", nullable = false)
 	private String nome;

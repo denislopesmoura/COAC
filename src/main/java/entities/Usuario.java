@@ -75,13 +75,9 @@ public class Usuario extends Entidade {
 	@Column(nullable = false, name = "telefone")
 	private String telefone;
 
-	@Column(nullable = false, name = "ativo")
-	private boolean ativo;
-
 	public Usuario() {
 		this.endereco = new Endereco();
 		this.foto = new Arquivo();
-		this.ativo = false;
 	}
 
 	public Arquivo getFoto() {
@@ -153,14 +149,6 @@ public class Usuario extends Entidade {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
-	}
-
-	public boolean isAtivo() {
-		return ativo;
-	}
-
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
 	}
 
 }

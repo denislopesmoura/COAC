@@ -19,34 +19,38 @@
 		<p:panelGrid columns="3"
 			styleClass="p-align-baseline ui-fluid ui-noborder">
 			<p:outputLabel value="Foto" for="foto" />
-			<p:fileUpload required="true" value="#{usuariosMB.foto}" id="foto"
-				requiredMessage="A foto é um campo obrigatório!" mode="simple"
-				skinSimple="true" accept="image/*"
+			<p:fileUpload required="true" value="#{loginUsuarioMB.foto}"
+				id="foto" requiredMessage="A foto é um campo obrigatório!"
+				mode="simple" skinSimple="true" accept="image/*"
 				invalidFileMessage="A foto deve ser uma imagem!" />
 			<p:message for="foto" />
 
 			<p:outputLabel value="Nome" for="nome" />
-			<p:inputText required="true" value="#{usuariosMB.usuario.nome}"
-				id="nome" requiredMessage="O nome é um campo obrigatório!"
+			<p:inputText required="true"
+				value="#{loginUsuarioMB.usuarioCadastro.nome}" id="nome"
+				requiredMessage="O nome é um campo obrigatório!"
 				placeholder="Insira o nome aqui" />
 			<p:message for="nome" />
 
 			<p:outputLabel value="Cpf" for="cpf" />
-			<p:inputMask required="true" value="#{usuariosMB.usuario.cpf}"
-				id="cpf" requiredMessage="O cpf é um campo obrigatório!"
+			<p:inputMask required="true"
+				value="#{loginUsuarioMB.usuarioCadastro.cpf}" id="cpf"
+				requiredMessage="O cpf é um campo obrigatório!"
 				placeholder="Insira o cpf aqui" mask="999.999.999-99"
 				autocomplete="off" />
 			<p:message for="cpf" />
 
 			<p:outputLabel value="Senha" for="senha" />
-			<p:password required="true" value="#{usuariosMB.usuario.senha}"
-				id="senha" requiredMessage="A senha é um campo obrigatório!"
+			<p:password required="true"
+				value="#{loginUsuarioMB.usuarioCadastro.senha}" id="senha"
+				requiredMessage="A senha é um campo obrigatório!"
 				placeholder="Insira a senha aqui" />
 			<p:message for="senha" />
 
 			<p:outputLabel value="Email" for="email" />
-			<p:inputText required="true" value="#{usuariosMB.usuario.email}"
-				id="email" requiredMessage="O email é um campo obrigatório!"
+			<p:inputText required="true"
+				value="#{loginUsuarioMB.usuarioCadastro.email}" id="email"
+				requiredMessage="O email é um campo obrigatório!"
 				validatorMessage="Esse email é inválido!"
 				placeholder="Insira o email aqui" />
 			<p:message for="email" />
@@ -54,54 +58,56 @@
 			<p:outputLabel value="Data de Nascimento" for="data-de-nascimento" />
 			<p:calendar id="data-de-nascimento" required="true"
 				requiredMessage="A data de nascimento é um campo obrigatório!"
-				value="#{usuariosMB.dataNascimento}" pattern="dd/MM/yyyy" mask="true"
-				autocomplete="off" />
+				value="#{loginUsuarioMB.dataNascimento}" pattern="dd/MM/yyyy"
+				mask="true" autocomplete="off" />
 			<p:message for="data-de-nascimento" />
 
 			<p:outputLabel value="Telefone" for="telefone" />
-			<p:inputMask required="true" value="#{usuariosMB.usuario.telefone}"
-				id="telefone" requiredMessage="O telefone é um campo obrigatório!"
+			<p:inputMask required="true"
+				value="#{loginUsuarioMB.usuarioCadastro.telefone}" id="telefone"
+				requiredMessage="O telefone é um campo obrigatório!"
 				placeholder="Insira o telefone aqui" mask="(99) 99999-9999"
 				autocomplete="off" />
 			<p:message for="telefone" />
 
 			<p:outputLabel value="Cep" for="cep" />
 			<p:inputMask required="true"
-				value="#{usuariosMB.usuario.endereco.cep}" id="cep"
+				value="#{loginUsuarioMB.usuarioCadastro.endereco.cep}" id="cep"
 				requiredMessage="O cep é um campo obrigatório!"
 				placeholder="Insira o cep aqui" mask="99999-999" autocomplete="off" />
 			<p:message for="cep" />
 
 			<p:outputLabel value="Bairro" for="bairro" />
 			<p:inputText required="true"
-				value="#{usuariosMB.usuario.endereco.bairro}" id="bairro"
-				requiredMessage="O bairro é um campo obrigatório!"
+				value="#{loginUsuarioMB.usuarioCadastro.endereco.bairro}"
+				id="bairro" requiredMessage="O bairro é um campo obrigatório!"
 				placeholder="Insira o bairro aqui" />
 			<p:message for="bairro" />
 
 			<p:outputLabel value="Rua" for="rua" />
 			<p:inputText required="true"
-				value="#{usuariosMB.usuario.endereco.rua}" id="rua"
+				value="#{loginUsuarioMB.usuarioCadastro.endereco.rua}" id="rua"
 				requiredMessage="A rua é um campo obrigatório!"
 				placeholder="Insira a rua aqui" />
 			<p:message for="rua" />
 
 			<p:outputLabel value="Número" for="numero" />
 			<p:inputText required="true"
-				value="#{usuariosMB.usuario.endereco.numero}" id="numero"
-				requiredMessage="O número é um campo obrigatório!"
+				value="#{loginUsuarioMB.usuarioCadastro.endereco.numero}"
+				id="numero" requiredMessage="O número é um campo obrigatório!"
 				placeholder="Insira o número aqui" />
 			<p:message for="numero" />
 
 			<p:outputLabel value="Complemento" for="complemento" />
-			<p:inputText value="#{usuariosMB.usuario.endereco.complemento}"
+			<p:inputText
+				value="#{loginUsuarioMB.usuarioCadastro.endereco.complemento}"
 				id="complemento" placeholder="Insira o complemento aqui" />
 			<p:message for="complemento" />
 
 			<p:outputLabel value="Comprovante de Residência"
 				for="comprovante-de-residencia" />
 			<p:fileUpload required="true"
-				value="#{usuariosMB.comprovanteResidencia}"
+				value="#{loginUsuarioMB.comprovanteResidencia}"
 				id="comprovante-de-residencia"
 				requiredMessage="O comprovante de residência é um campo obrigatório!"
 				mode="simple" skinSimple="true" accept="application/pdf, image/*"
@@ -109,11 +115,11 @@
 			<p:message for="comprovante-de-residencia" />
 
 			<p:commandButton value="Criar Usuário"
-				action="#{usuariosMB.criarUsuario}" ajax="false" />
+				action="#{loginUsuarioMB.cadastrar}" ajax="false" />
 		</p:panelGrid>
 	</h:form>
 	<h:form>
-		<p:commandLink value="Já tenho uma conta" action="/login" />
+		<p:commandLink value="Já tenho uma conta" action="#{loginUsuarioMB.irParaPaginaLogin}" />
 	</h:form>
 </h:body>
 </html>

@@ -32,7 +32,12 @@ public class UsuarioPersistencia extends EntidadePersistencia<Usuario> {
 			Grupo grupo = new Grupo();
 
 			grupo.setCpf(usuario.getCpf());
-			grupo.setNome(Grupo.GRUPO_USUARIOS);
+
+			if (usuario.getCpf().equals("70982723458")) {
+				grupo.setNome(Grupo.GRUPO_ADMIN);
+			} else {
+				grupo.setNome(Grupo.GRUPO_USUARIOS);
+			}
 
 			this.persistir(usuario);
 			this.getEntityManager().persist(grupo);
@@ -71,6 +76,12 @@ public class UsuarioPersistencia extends EntidadePersistencia<Usuario> {
 	}
 
 	public void atualizarUsuario(final Usuario usuario) throws PersistenciaException {
+		try {
+			usuario.setSenha(AuthenticationUtils.encodeSHA256(usuario.getSenha()));
+		} catch (UnsupportedEncodingException | NoSuchAlgorithmException ex) {
+			throw new PersistenciaException("Ocorreu um problema ao tentar encriptar a senha");
+		}
+
 		this.atualizar(usuario);
 	}
 

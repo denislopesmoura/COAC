@@ -7,15 +7,15 @@
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Lista de Usuários</title>
+	<title>Página Principal do Administrador</title>
 </h:head>
 <h:body>
-	<p:outputLabel value="Lista de Usuários" />
+	<p:outputLabel value="Página Principal do Administrador" />
 	<p:separator />
 
 	<p:growl id="growl" sticky="true" globalOnly="true" />
 
-	<p:dataTable var="u" value="#{usuariosMB.usuarios}"
+	<p:dataTable var="u" value="#{adminMB.usuarios}"
 		tableStyle="table-layout: auto;"
 		emptyMessage="Não há usuário cadastrados." id="tabela-usuario">
 		<p:column headerText="Id">
@@ -53,22 +53,14 @@
 		<p:column headerText="Complemento">
 			<h:outputText value="#{u.endereco.complemento}" />
 		</p:column>
-		<p:column headerText="Deletar">
-			<h:form>
-				<p:commandButton action="#{usuariosMB.deletarUsuario(u.id)}"
-					value="Deletar Usuário" ajax="false" />
-			</h:form>
-		</p:column>
-		<p:column headerText="Editar">
-			<h:form>
-				<p:commandButton action="#{usuariosMB.irParaPaginaEdicao(u)}"
-					value="Editar Usuário" ajax="false" />
-			</h:form>
-		</p:column>
 	</p:dataTable>
 
 	<p:separator />
 
+	<h:form>
+		<p:commandButton value="Atualizar Lista" action="#{adminMB.atualizar}"
+			ajax="false" />
+	</h:form>
 	<h:form>
 		<p:commandButton value="Logout" action="#{loginUsuarioMB.logout}"
 			ajax="false" />
