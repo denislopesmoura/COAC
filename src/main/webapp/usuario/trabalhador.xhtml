@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Trabalhador</title>
+</h:head>
+<h:body>
+	<p:outputLabel value="Página de um trabalhador" />
+	<p:separator />
+
+	<p:growl id="growl" sticky="true" globalOnly="true" />
+
+	<p:panelGrid columns="2"
+		styleClass="p-align-baseline ui-fluid ui-noborder">
+		<p:outputLabel value="Nome Artístico" />
+		<h:outputText value="#{trabalhadorMB.trabalhador.nomeArtistico}" />
+
+		<p:outputLabel value="MEI" />
+		<h:outputText value="#{trabalhadorMB.trabalhador.mei}" />
+
+		<p:outputLabel for="color" value="Cor" />
+		<h:outputText value="#{trabalhadorMB.trabalhador.cor}" />	
+
+		<p:outputLabel for="gender" value="Gênero" />
+        <h:outputText value="#{trabalhadorMB.trabalhador.genero}" />
+
+		<p:outputLabel for="escolarity" value="Escolaridade" />
+		<h:outputText value="#{trabalhadorMB.trabalhador.escolaridade}" />	
+
+		<p:outputLabel value="Profissão" />
+		<h:outputText value="#{trabalhadorMB.trabalhador.profissao}" />
+
+		<p:outputLabel value="DRT" />
+		<p:selectBooleanCheckbox value="#{trabalhadorMB.trabalhador.drt}" itemLabel="DRT"/>		
+
+		<p:outputLabel value="Segmento Cultural" />
+		<h:outputText value="#{trabalhadorMB.trabalhador.segmento_cultural}" />
+		
+		<p:outputLabel value="Facebook" />
+		<h:outputText value="#{trabalhadorMB.trabalhador.facebook}" />
+		
+		<p:outputLabel value="Instagram" />
+		<h:outputText value="#{trabalhadorMB.trabalhador.instagram}" />
+		
+		<p:outputLabel value="Youtube" />
+		<h:outputText value="#{trabalhadorMB.trabalhador.youtube}" />
+		
+		<p:outputLabel value="Repositório Online" />
+		<h:outputText value="#{trabalhadorMB.trabalhador.repositorioOnline}" />
+		
+		<p:outputLabel value="Renda Mensal Cultural" />
+		<h:outputText value="#{trabalhadorMB.trabalhador.rendaMensalProducoesCulturais}" />
+		
+		<p:outputLabel value="Renda Anual 2018" />
+		<h:outputText value="#{trabalhadorMB.trabalhador.rendaAnual2018}" />
+		
+	</p:panelGrid>
+	<h:form>
+		<p:commandButton value="Editar Trabalhador" action="/usuario/editar_trabalhador" />
+	</h:form>
+	<h:form>
+		<p:commandButton value="Deletar trabalhador"
+			action="#{trabalhadorMB.deletarTrabalhador}" ajax="false" />
+	</h:form>
+	<h:form>
+		<p:commandButton value="Logout" action="#{loginUsuarioMB.logout}"
+			ajax="false" />
+	</h:form>
+</h:body>
+</html>

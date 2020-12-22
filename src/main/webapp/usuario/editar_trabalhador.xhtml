@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Editar Usuário</title>
+</h:head>
+<h:body>
+	<p:outputLabel value="Editar Usuários" />
+	<p:separator />
+
+	<p:growl id="growl" sticky="true" globalOnly="true" />
+
+	<h:form enctype="multipart/form-data" id="form-trabalhador">
+		<p:panelGrid columns="3"
+			styleClass="p-align-baseline ui-fluid ui-noborder">
+			
+			<p:outputLabel value="Nome Artístico" for="nome_artistico" />
+			<p:inputText required="true" value="#{trabalhadorMB.trabalhador.nomeArtistico}"
+				id="nome_artistico" requiredMessage="O nome artístico é um campo obrigatório!"
+				placeholder="Insira o nome artístico aqui" />
+			<p:message for="nome_artistico" />
+
+			<p:outputLabel value="MEI" for="mei" />
+			<p:password required="true" value="#{trabalhadorMB.trabalhador.mei}"
+				id="mei" requiredMessage="O MEI é um campo obrigatório!"
+				placeholder="Insira o MEI aqui" mask="99.999.999/9999-99" />
+			<p:message for="mei" />
+
+			<p:outputLabel value="Cor" for="color" />
+			<p:selectOneListbox id="color" required="true" 
+				requiredMessage="A cor é um campo obrigatório" 
+				placeholder="cor"
+				value="#{trabalhadorMB.trabalhador.cor}">
+            	<f:selectItem itemLabel="Branca" itemValue="branca" />
+            	<f:selectItem itemLabel="Preta" itemValue="preta" />
+            	<f:selectItem itemLabel="Parda" itemValue="parda" />
+            	<f:selectItem itemLabel="Indígena" itemValue="indigena" />
+            	<f:selectItem itemLabel="Amarela" itemValue="amarela" />
+        	</p:selectOneListbox>
+			<p:message for="color" />
+
+			<p:outputLabel for="gender" value="Gênero" />
+	        <p:selectOneListbox id="gender" required="true"
+	        	requiredMessage="O gênerero é um campo obrigatório" 
+	        	placeholder="gênero"
+	        	value="#{trabalhadorMB.trabalhador.genero}">
+	            <f:selectItem itemLabel="Masculino" itemValue="masculino" />
+	            <f:selectItem itemLabel="Feminino" itemValue="feminino" />
+	        </p:selectOneListbox>
+			<p:message for="gender" />
+
+			<p:outputLabel for="escolarity" value="Escolaridade" />
+			<p:selectOneListbox id="escolarity" 
+				required="true"
+				requiredMessage="A escolaridade é um campo obrigatório"
+				placeholder="escolaridade"
+				value="#{trabalhadorMB.trabalhador.escolaridade}">
+	            <f:selectItem itemLabel="Analfabeto" itemValue="analfabeto" />
+	            <f:selectItem itemLabel="Fundamental" itemValue="fundamental" />
+	            <f:selectItem itemLabel="Médio" itemValue="medio" />
+	            <f:selectItem itemLabel="Superior Incompleto" itemValue="superior incompleto" />
+	            <f:selectItem itemLabel="Superior Completo" itemValue="superior completo" />
+	        </p:selectOneListbox>
+			<p:message for="escolarity" />
+
+			<p:outputLabel for="job" value="Profissão" />
+			<h:outputText required="true"
+				requiredMessage="A profissão é um campo obrigatório"
+				placeholder="Insira a profissão aqui"
+				value="#{trabalhadorMB.trabalhador.profissao}" />
+			<p:message for="job" />
+			
+			<p:outputLabel value="DRT" />
+			<p:selectBooleanCheckbox value="#{trabalhadorMB.trabalhador.drt}" itemLabel="DRT"/>		
+			
+			<p:outputLabel for="segment" value="Segmento Cultural" />
+			<h:outputText 
+				required="true"
+				requiredMessage="O campo Segmento cultural é obrigatório"
+				placeholder="Insira o segmento cultural"
+				value="#{trabalhadorMB.trabalhador.segmentoCultural}" />
+			<p:message for="segment"/>
+			
+			<p:outputLabel value="Facebook" for="facebook" />
+			<p:inputText value="#{trabalhadorMB.trabalhador.facebook}"
+				id="facebook" placeholder="Insira o facebook aqui" />
+			<p:message for="facebook" />
+			
+			<p:outputLabel value="Instagram" for="instagram" />
+			<p:inputText value="#{trabalhadorMB.trabalhador.instagram}"
+				id="instagram" placeholder="Insira o instagram aqui" />
+			<p:message for="instagram" />
+			
+			<p:outputLabel value="Youtube" for="youtube" />
+			<p:inputText value="#{trabalhadorMB.trabalhador.youtube}"
+				id="youtube" placeholder="Insira o youtube aqui" />
+			<p:message for="youtube" />
+			
+			<p:outputLabel value="Repositório Online" for="repo" />
+			<p:inputText value="#{trabalhadorMB.trabalhador.repositorioOnline}"
+				id="repo" placeholder="Insira o repositorio online aqui" />
+			<p:message for="repo" />
+			
+			<p:outputLabel value="Renda Mensal Cultural" for="renda" />
+			<p:password required="true" value="#{trabalhadorMB.trabalhador.rendaMensalProducoesCulturais}"
+				id="renda" requiredMessage="A renda mensal é um campo obrigatório!"
+				placeholder="Insira a renda mensal aqui" />
+			<p:message for="renda" />
+			
+			<p:outputLabel value="Renda 2018" for="renda_anual" />
+			<p:password required="true" value="#{trabalhadorMB.trabalhador.rendaAnual2018}"
+				id="renda_anual" requiredMessage="A renda anual 2018 é um campo obrigatório!"
+				placeholder="Insira a renda anual aqui" />
+			<p:message for="renda_anual" />
+			
+			<p:outputLabel value="Currículo artístico"
+				for="curriculo" />
+			<p:fileUpload required="true"
+				value="#{trabalhadorMB.trabalhador.curriculo_artistico}"
+				id="curriculo"
+				requiredMessage="O currículo artístico é um campo obrigatório!"
+				mode="simple" skinSimple="true" accept="application/pdf, image/*"
+				invalidFileMessage="O currículo artístico deve ser uma imagem ou um pdf!" />
+			<p:message for="curriculo" />
+
+			<p:commandButton value="Editar Usuário" action="#{usuarioMB.editar}"
+				ajax="false" />
+		</p:panelGrid>
+	</h:form>
+	<h:form>
+		<p:commandLink value="Voltar" action="/usuario/usuario" />
+	</h:form>
+</h:body>
+</html>
