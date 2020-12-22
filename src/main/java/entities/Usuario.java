@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedNativeQueries;
@@ -74,11 +76,30 @@ public class Usuario extends Entidade {
 	@NotEmpty
 	@Column(nullable = false, name = "telefone")
 	private String telefone;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false, name = "status")        
+	private StatusUsuario status;
+
+	public StatusUsuario getStatus() {
+		return status;
+	}
+
+
+
+	public void setStatus(StatusUsuario status) {
+		this.status = status;
+	}
+
+
 
 	public Usuario() {
 		this.endereco = new Endereco();
 		this.foto = new Arquivo();
+		this.status = StatusUsuario.EM_ESPERA;
 	}
+	
+
 
 	public Arquivo getFoto() {
 		return foto;
