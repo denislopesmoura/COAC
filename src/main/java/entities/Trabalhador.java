@@ -87,7 +87,7 @@ public class Trabalhador extends Entidade {
 	private String rendaAnual2018;
 
 	@NotEmpty
-	@Column(nullable = false, name = "beneficios")
+	@Column(nullable = true, name = "beneficios")
 	private List<String> beneficios;
 
 	@NotEmpty
