@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import entities.StatusUsuario;
 import entities.Usuario;
 import exceptions.PersistenciaException;
 import persistence.UsuarioPersistencia;
@@ -50,4 +51,10 @@ public class UsuarioBean {
 
 		return this.usuarioPersistencia.pegarUsuarioPorCpf(cpf);
 	}
+	
+	public void atualizarStatusPorID(long id, StatusUsuario status) throws PersistenciaException {
+	this.usuarioPersistencia.atualizarStatusPorID(id, status);
+	
+	}
+	
 }

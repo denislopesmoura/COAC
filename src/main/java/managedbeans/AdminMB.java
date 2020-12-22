@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import beans.UsuarioBean;
+import entities.StatusUsuario;
 import entities.Usuario;
 import exceptions.PersistenciaException;
 
@@ -50,6 +51,27 @@ public class AdminMB implements Serializable {
 		FacesContext.getCurrentInstance().addMessage(null, mensagem);
 	}
 
+	public String aprovar(Usuario usuario) {
+		
+		try {
+			this.usuarioBean.atualizarStatusPorID(usuario.getId(), StatusUsuario.APROVADA);
+		} catch (PersistenciaException e) {
+			alertarUsuario(FacesMessage.SEVERITY_ERROR, e.getMessage());
+		}
+		atualizar();
+		return null;
+	}
+	
+	public String recusar(Usuario usuario) {
+		try {
+			this.usuarioBean.atualizarStatusPorID(usuario.getId(), StatusUsuario.REJEITADA);
+		} catch (PersistenciaException e) {
+			alertarUsuario(FacesMessage.SEVERITY_ERROR, e.getMessage());
+		}
+		atualizar();
+		return null;
+	}
+	
 	public List<Usuario> getUsuarios() {
 		return usuarios;
 	}

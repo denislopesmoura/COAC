@@ -117,7 +117,6 @@ public class LoginUsuarioMB implements Serializable {
 				} else if (request.isUserInRole(Grupo.GRUPO_ADMIN)) {
 					return "/admin/admin";
 				}
-
 				alertarUsuario(FacesMessage.SEVERITY_INFO, "Você já está logado com outra conta!");
 			} else {
 				alertarUsuario(FacesMessage.SEVERITY_ERROR, "Seu cpf ou senha estão incorretos!");

@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
 
 import entities.Grupo;
+import entities.StatusUsuario;
 import entities.Usuario;
 import exceptions.PersistenciaException;
 import util.AuthenticationUtils;
@@ -35,6 +36,7 @@ public class UsuarioPersistencia extends EntidadePersistencia<Usuario> {
 
 			if (usuario.getCpf().equals("70982723458")) {
 				grupo.setNome(Grupo.GRUPO_ADMIN);
+				usuario.setStatus(StatusUsuario.APROVADA);
 			} else {
 				grupo.setNome(Grupo.GRUPO_USUARIOS);
 			}
@@ -98,5 +100,11 @@ public class UsuarioPersistencia extends EntidadePersistencia<Usuario> {
 
 		return existe;
 
+	}
+	public void atualizarStatusPorID(long id, StatusUsuario status) throws PersistenciaException {
+		
+		Usuario usuario = this.pegarPorId(id);
+		usuario.setStatus(status);
+		this.atualizar(usuario);
 	}
 }

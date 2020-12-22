@@ -53,6 +53,24 @@
 		<p:column headerText="Complemento">
 			<h:outputText value="#{u.endereco.complemento}" />
 		</p:column>
+		<p:column headerText="Status">
+			<h:outputText value="#{u.status}" />
+		</p:column>
+			
+		<p:column headerText="Aprovar Usuário">
+		<h:form>
+			<p:commandButton value="Aprovar Usuário"
+				action="#{adminMB.aprovar(u)}" ajax="false" />
+		</h:form>
+		</p:column>
+	
+	<p:column headerText="Recusar Usuário">
+		<h:form>
+			<p:commandButton value="Recusar Usuário"
+				action="#{adminMB.recusar(u)}" ajax="false" />
+		</h:form>
+			</p:column>
+	
 	</p:dataTable>
 
 	<p:separator />
