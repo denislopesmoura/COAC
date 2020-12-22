@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -17,6 +19,9 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "trabalhadores")
+@NamedNativeQueries(value = {
+		@NamedNativeQuery(name = "Trabalhador.pegarTrabalhadorPorNome", query = "SELECT * FROM trabalhador WHERE nomeArtistico = ?", resultClass = Trabalhador.class),
+		@NamedNativeQuery(name = "Trabalhador.pegarTodosTrabalhadores", query = "SELECT * FROM trabalhador", resultClass = Trabalhador.class)})
 public class Trabalhador extends Entidade {
 
 	private static final long serialVersionUID = 1L;
