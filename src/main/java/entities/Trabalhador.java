@@ -1,13 +1,21 @@
 package entities;
 
 import java.io.File;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.Table;
+import javax.persistence.JoinTable;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -15,6 +23,7 @@ import javax.validation.constraints.NotNull;
  * 
  * @author Carlos
  * @author Weydson
+ * @author Denis Moura
  */
 
 @Entity
@@ -34,17 +43,17 @@ public class Trabalhador extends Entidade {
 	@Column(nullable = true, name = "mei")
 	private String mei;
 
-	@NotEmpty
+	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, name = "cor")
-	private String cor;
+	private Cor cor;
 
-	@NotEmpty
+	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, name = "genero")
-	private String genero;
+	private Genero genero;
 
-	@NotEmpty
+	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, name = "escolaridade")
-	private String escolaridade;
+	private Escolaridade escolaridade;
 
 	@NotEmpty
 	@Column(nullable = false, name = "profissao")
@@ -60,8 +69,12 @@ public class Trabalhador extends Entidade {
 
 	@NotNull
 	@NotEmpty
-	@Column(nullable = false, name = "segmento_cultural")
-	private List<String> segmentoCultural;
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "trabalhador_segmento_cultural",
+				joinColumns = @JoinColumn (name = "trabalhador_id"),
+				inverseJoinColumns = @JoinColumn(name = "segmento_cultural_id")
+	)
+	private Set<SegmentoCultural> segmentoCultural = new HashSet<SegmentoCultural>();
 
 	@NotNull
 	@Column(nullable = false, name = "curriculo_artistico")
@@ -119,27 +132,27 @@ public class Trabalhador extends Entidade {
 		this.mei = mei;
 	}
 
-	public String getCor() {
+	public Cor getCor() {
 		return cor;
 	}
 
-	public void setCor(String cor) {
+	public void setCor(Cor cor) {
 		this.cor = cor;
 	}
 
-	public String getGenero() {
+	public Genero getGenero() {
 		return genero;
 	}
 
-	public void setGenero(String genero) {
+	public void setGenero(Genero genero) {
 		this.genero = genero;
 	}
 
-	public String getEscolaridade() {
+	public Escolaridade getEscolaridade() {
 		return escolaridade;
 	}
 
-	public void setEscolaridade(String escolaridade) {
+	public void setEscolaridade(Escolaridade escolaridade) {
 		this.escolaridade = escolaridade;
 	}
 
@@ -167,11 +180,11 @@ public class Trabalhador extends Entidade {
 //		this.espacoCultural = espacoCultural;
 //	}
 
-	public List<String> getSegmentoCultural() {
+	public Set<SegmentoCultural> getSegmentoCultural() {
 		return segmentoCultural;
 	}
 
-	public void setSegmentoCultural(List<String> segmentoCultural) {
+	public void setSegmentoCultural(Set<SegmentoCultural> segmentoCultural) {
 		this.segmentoCultural = segmentoCultural;
 	}
 

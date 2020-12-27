@@ -1,6 +1,7 @@
 package util;
 
 import entities.Trabalhador;
+import util.CpfCnpjUtils;
 
 public class TrabalhadorUtils {
 	
@@ -13,6 +14,11 @@ public class TrabalhadorUtils {
 		if (!verificarNome(trabalhador.getNomeArtistico())) {
 			throw new IllegalArgumentException("O nome deve conter apenas letras e espaços em branco!");
 		}
+		
+		if (trabalhador.getMei() != "" && !CpfCnpjUtils.validaCnpj(trabalhador.getMei())) {
+			throw new IllegalArgumentException("O Mei informado é inválido");
+		}
+		
 		
 	}
 	
