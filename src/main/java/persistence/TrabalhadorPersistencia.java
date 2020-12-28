@@ -6,8 +6,13 @@ import javax.annotation.PostConstruct;
 import javax.persistence.TypedQuery;
 
 import entities.Trabalhador;
-import entities.Usuario;
 import exceptions.PersistenciaException;
+
+/**
+ * 
+ * @author Denis Moura
+ *
+ */
 
 public class TrabalhadorPersistencia extends EntidadePersistencia<Trabalhador>{
 	
@@ -16,7 +21,7 @@ public class TrabalhadorPersistencia extends EntidadePersistencia<Trabalhador>{
 		this.setClasse(Trabalhador.class);
 	}
 	
-	public void adicionarUsuario(final Trabalhador trabalhador) throws PersistenciaException {
+	public void adicionarTrabalhador(final Trabalhador trabalhador) throws PersistenciaException {
 		
 		this.persistir(trabalhador);
 	}
@@ -53,7 +58,29 @@ public class TrabalhadorPersistencia extends EntidadePersistencia<Trabalhador>{
 		
 	}
 	
+	public void atualizarTrabalhador(Trabalhador trabalhador) throws PersistenciaException {
+		
+		this.atualizar(trabalhador);
+	}
 	
+	public void deletarTrabalhadorPorId (Long id) throws PersistenciaException {
+		this.removerPorId(id);
+	}
+	
+	public Trabalhador pegarTrabalhadorPorMei (String mei) throws PersistenciaException {
+		try {
+			
+			TypedQuery<Trabalhador> typeQuery = this.getEntityManager().createNamedQuery("Trabalhador.pegarPorMei", Trabalhador.class);
+			
+			typeQuery.setParameter(1, mei);
+			
+			return typeQuery.getSingleResult();
+			
+		} catch (Exception ex) {
+			throw new PersistenciaException("Não há nenhum trabalhador com esse mei cadastrado");
+		}
+		
+	}
 	
 
 }

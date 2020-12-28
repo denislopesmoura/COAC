@@ -22,6 +22,11 @@ public class TrabalhadorUtils {
 		
 	}
 	
+	/**
+	 * Verifica se o nome contém apenas letras e espaços em branco.
+	 * @param nome
+	 * @return boolean
+	 */
 	private static boolean verificarNome(final String nome) {
 		char[] chars = nome.toCharArray();
 		boolean teveEspaco = false;

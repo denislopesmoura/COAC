@@ -29,8 +29,10 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "trabalhadores")
 @NamedNativeQueries(value = {
-		@NamedNativeQuery(name = "Trabalhador.pegarTrabalhadorPorNome", query = "SELECT * FROM trabalhador WHERE nomeArtistico = ?", resultClass = Trabalhador.class),
-		@NamedNativeQuery(name = "Trabalhador.pegarTodosTrabalhadores", query = "SELECT * FROM trabalhador", resultClass = Trabalhador.class)})
+		@NamedNativeQuery(name = "Trabalhador.pegarTrabalhadorPorNome", query = "SELECT * FROM trabalhadores WHERE nomeArtistico = ?", resultClass = Trabalhador.class),
+		@NamedNativeQuery(name = "Trabalhador.pegarTodosTrabalhadores", query = "SELECT * FROM trabalhadores", resultClass = Trabalhador.class),
+		@NamedNativeQuery(name = "Trabalhador.pegarPorMei", query = "SELECT * FROM trabalhadores WHERE mei = ?", resultClass = Trabalhador.class)
+})
 public class Trabalhador extends Entidade {
 
 	private static final long serialVersionUID = 1L;
