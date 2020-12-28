@@ -62,11 +62,18 @@ public class Trabalhador extends Entidade {
 	@NotNull
 	@Column(nullable = false, name = "drt")
 	private boolean drt;
-
-//	@NotNull
-//	@Column(nullable = true, name = "espaco_cultural")
-//	private List<EspacoCultural> espacoCultural;
-
+	
+	//Relacionamento n-to-n entre os espacos culturais e o trabalhador. 
+	@NotNull
+	@NotEmpty
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "trabalhador_tipo_espaco_cultural",
+				joinColumns = @JoinColumn (name = "trabalhador_id"),
+				inverseJoinColumns = @JoinColumn(name = "tipo_espaco_cultural_id")
+	)
+	private Set<TipoEspacoCultural> espacoCultural = new HashSet<TipoEspacoCultural>();
+	
+	//Relacionamento n-to-n entre os segmentos culturais e o trabalhador. 
 	@NotNull
 	@NotEmpty
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -104,9 +111,9 @@ public class Trabalhador extends Entidade {
 	@Column(nullable = false, name = "renda_anual_2018")
 	private String rendaAnual2018;
 
-	@NotEmpty
+	@Enumerated(EnumType.STRING)
 	@Column(nullable = true, name = "beneficios")
-	private List<String> beneficios;
+	private List<Beneficios> beneficios;
 
 	@NotEmpty
 	@Column(nullable = true, name = "homologado_cadastro")
@@ -172,13 +179,13 @@ public class Trabalhador extends Entidade {
 		this.drt = drt;
 	}
 
-//	public List<EspacoCultural> getEspacoCultural() {
-//		return espacoCultural;
-//	}
-//
-//	public void setEspacoCultural(List<EspacoCultural> espacoCultural) {
-//		this.espacoCultural = espacoCultural;
-//	}
+	public Set<TipoEspacoCultural> getEspacoCultural() {
+		return espacoCultural;
+	}
+
+	public void setEspacoCultural(Set<TipoEspacoCultural> espacoCultural) {
+		this.espacoCultural = espacoCultural;
+	}
 
 	public Set<SegmentoCultural> getSegmentoCultural() {
 		return segmentoCultural;
@@ -244,11 +251,11 @@ public class Trabalhador extends Entidade {
 		this.rendaAnual2018 = rendaAnual2018;
 	}
 
-	public List<String> getBeneficios() {
+	public List<Beneficios> getBeneficios() {
 		return beneficios;
 	}
 
-	public void setBeneficios(List<String> beneficios) {
+	public void setBeneficios(List<Beneficios> beneficios) {
 		this.beneficios = beneficios;
 	}
 

@@ -1,5 +1,11 @@
 package entities;
 
+/**
+ * 
+ * @author Denis Moura
+ *
+ */
+
 public enum Escolaridade {
 	
 	EFI("Ensino Fundamental Incompleto"),

@@ -1,24 +1,15 @@
 package entities;
 
-/**
- * @author Denis Moura
- */
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.NamedNativeQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name= "segmentos_culturais")
-@NamedNativeQueries(value = {
-	@NamedNativeQuery(name="SegmentoCultural.pegarTodosSegmentos", query = "SELECT * FROM segmentos_culturais", resultClass = SegmentoCultural.class)
-})
-public class SegmentoCultural extends Entidade {
-	
+@Table(name="tipo_espacos_culturais")
+public class TipoEspacoCultural extends Entidade {
+
 	private static final long serialVersionUI = 1L;
 	
 	@NotEmpty
@@ -29,11 +20,7 @@ public class SegmentoCultural extends Entidade {
 	@NotNull
 	@Column(nullable = false, name = "ativo")
 	private boolean ativo;
-	
-	public SegmentoCultural() {
-		this.ativo = true;
-	}
-	
+
 	public boolean getAtivo() {
 		return ativo;
 	}
@@ -42,7 +29,6 @@ public class SegmentoCultural extends Entidade {
 		this.ativo = ativo;
 	}
 
-	
 	public String getNome() {
 		return nome;
 	}
@@ -50,7 +36,4 @@ public class SegmentoCultural extends Entidade {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	
-
 }
