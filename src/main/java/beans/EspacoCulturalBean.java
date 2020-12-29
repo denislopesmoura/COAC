@@ -13,7 +13,7 @@ import entities.EspacoCultural;
  * 
  * Esse EJB não possui estado e foi definido como uma interface local.
  * 
- * @author Hugo 
+ * @author Hugo
  *
  */
 
