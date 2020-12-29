@@ -19,7 +19,7 @@ public class TipoEspacoCulturalPersistencia extends EntidadePersistencia<TipoEsp
 		
 	}
 	
-	public List<TipoEspacoCultural> pegarTodosSegmentos() throws PersistenciaException{
+	public List<TipoEspacoCultural> pegarTodosTiposEspaco() throws PersistenciaException{
 		try {
 			
 			TypedQuery<TipoEspacoCultural> typeQuery = this.getEntityManager().createNamedQuery("TipoEspacoCultural.pegarTodosEspacos", TipoEspacoCultural.class);
@@ -32,15 +32,15 @@ public class TipoEspacoCulturalPersistencia extends EntidadePersistencia<TipoEsp
 		
 	} 
 	
-	public TipoEspacoCultural pegarSegmentoPorId(Long id) throws PersistenciaException {
+	public TipoEspacoCultural pegarTipoEspacoPorId(Long id) throws PersistenciaException {
 		return this.pegarPorId(id);
 	}
 	
-	public void removerSegmentoPorId(Long id) throws PersistenciaException {
+	public void removerTipoEspacoPorId(Long id) throws PersistenciaException {
 		this.removerPorId(id);
 	}
 
-	public void atualizarSegmento(TipoEspacoCultural tipoEspacoCultural) throws PersistenciaException {
+	public void atualizarTipoEspaco(TipoEspacoCultural tipoEspacoCultural) throws PersistenciaException {
 		this.atualizar(tipoEspacoCultural);
 	}
 
