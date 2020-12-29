@@ -21,8 +21,11 @@ import javax.validation.constraints.NotNull;
 	})
 public class TipoEspacoCultural extends Entidade {
 
-	private static final long serialVersionUI = 1L;
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@NotEmpty
 	@Column(nullable = false, name = "nome")
 	private String nome;

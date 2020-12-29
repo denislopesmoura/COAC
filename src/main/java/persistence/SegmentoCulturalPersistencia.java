@@ -2,13 +2,15 @@ package persistence;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.TypedQuery;
 
 import entities.SegmentoCultural;
 import exceptions.PersistenciaException;
 
 public class SegmentoCulturalPersistencia extends EntidadePersistencia<SegmentoCultural> {
-
+	
+	@PostConstruct
 	public void configurar() {
 		this.setClasse(SegmentoCultural.class);
 	}
@@ -43,4 +45,5 @@ public class SegmentoCulturalPersistencia extends EntidadePersistencia<SegmentoC
 	public void atualizarSegmento(SegmentoCultural segmentoCultural) throws PersistenciaException {
 		this.atualizar(segmentoCultural);
 	}
+
 }

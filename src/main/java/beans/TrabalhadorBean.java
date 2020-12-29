@@ -2,7 +2,6 @@ package beans;
 
 import java.util.List;
 
-import javax.ejb.Local;
 import javax.ejb.Stateless;
 
 import entities.Trabalhador;
@@ -11,6 +10,7 @@ import persistence.TrabalhadorPersistencia;
 import util.CpfCnpjUtils;
 import util.TrabalhadorUtils;
 
+
 /**
  * 
  * @author Denis Lopes
@@ -18,7 +18,6 @@ import util.TrabalhadorUtils;
  */
 
 @Stateless
-@Local
 public class TrabalhadorBean {
 	
 	private TrabalhadorPersistencia trabalhadorPersistencia;
