@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Cadastro de espaços culturais</title>
+</h:head>
+
+<h:body>
+	<p:outputLabel value="Cadastro de Usuários" />
+	<p:separator />
+
+	<p:growl id="growl" sticky="true" globalOnly="true" />
+
+	<h:form enctype="multipart/form-data" id="form-usuario">
+		<p:panelGrid columns="3"
+			styleClass="p-align-baseline ui-fluid ui-noborder">
+
+			<p:outputLabel value="Email" for="email" />
+			<p:inputMask required="true" value="" id="email"
+				requiredMessage="O email é um campo obrigatório"
+				placeholder="E-mail" mask="espacoCultural@gmail.com"
+				autocomplete="off" />
+			<p:message for="email" />
+
+			<p:outputLabel value="Razão social" for="nome" />
+			<p:inputText required="true" value="" id="nome"
+				requiredMessage="A razão social é um campo obrigatório"
+				placeholder="Insira a razão social / nome" autocomplete="off" />
+			<p:message for="nome" />
+
+			<p:outputLabel value="Nome Fantasia" for="nomeFantasia" />
+			<p:inputText required="false" value="" id="nomeFantasia"
+				requiredMessage="O nome fantasia é um campo obrigatório"
+				placeholder="Insira o nome fantasia" autocomplete="off" />
+			<p:message for="nomeFantasia" />
+
+			<p:outputLabel value="CNPJ" for="cnpj" />
+			<p:inputMask required="false" value="" id="cnpj"
+				requiredMessage="A inserção do CNPJ é obrigatória"
+				placeholder="Insira o CNPJ" mask="00.000.000/0001-00"
+				autocomplete="off" />
+			<p:message for="cnpj" />
+
+			<p:outputLabel value="Endereço" for="endereco" />
+			<p:inputText required="true" value="" id="endereco"
+				requiredMessage="O endereço é obrigatório"
+				placeholder="Insira o endereço" autocomplete="off" />
+			<p:message for="endereco" />
+
+			<p:outputLabel value="Bairro" for="bairro" />
+			<p:inputText required="true" value="" id="bairro"
+				requiredMessage="O bairro é obrigatório"
+				placeholder="Insira o bairro" autocomplete="off" />
+			<p:message for="bairro" />
+
+			<p:outputLabel value="Comprovante de Endereço"
+				for="comprovante-endereco" />
+			<p:fileUpload required="true" value="" id="comprovante-endereco"
+				requiredMessage="O anexo do comprovante é obrigatório!"
+				mode="simple" skinSimple="true" accept="image/*|.pdf"
+				invalidFileMessage="O documento deve ser uma imagem ou um arquivo .pdf!" />
+			<p:message for="comprovante-endereco" />
+
+			<p:outputLabel value="Telefone" for="telefone" />
+			<p:inputMask required="true" value="" id="telefone"
+				requiredMessage="O telefone é obrigatório!"
+				placeholder="Insira o telefone aqui" mask="(xx) 99999-9999"
+				autocomplete="off" />
+			<p:message for="telefone" />
+
+			<p:outputLabel value="Nome da pessoa responsável pelo espaço"
+				for="pessoa-responsavel" />
+			<p:inputMask required="true" value="" id="pessoa-responsavel"
+				requiredMessage="O campo é obrigatório!"
+				placeholder="Nome do (a) responsável" autocomplete="off" />
+			<p:message for="nome-reponsavel" />
+
+			<p:outputLabel value="Tipo do espaço cultural" for="tipo-espaco" />
+			<p:selectOneRadio id="tipo-espaco" value="" required="true" unselectable="true">
+				<f:selectItem itemlabel="Espaço cultural – pessoa física"
+					itemValue="" />
+				<f:selectItem
+					itemlabel="Empresa Individual de Responsabilidade Limitada (EIRELI)"
+					itemValue="" />
+				<f:selectItem itemlabel="Microempresa (ME)" itemValue="" />
+				<f:selectItem itemlabel="Microempreendedor Individual (MEI)"
+					itemValue="" />
+				<f:selectItem itemlabel="Empresa de Pequeno Porte (EPP)"
+					itemValue="" />
+				<f:selectItem itemlabel="Organização da sociedade civil"
+					itemValue="" />
+				<f:selectItem itemlabel="Organização cultural comunitária"
+					itemValue="" />
+				<f:selectItem itemlabel="Instituição cultural" itemValue="" />
+				<f:selectItem itemlabel="Cooperativa com finalidade cultural"
+					itemValue="" />
+				<f:selectItem itemlabel="Coletivo de arte" itemValue="" />
+			</p:selectOneRadio>
+
+			<p:outputLabel
+				value="Indique a(s) principal(is) linguagem(s) cultural(is) em que atua:"
+				for="linguagens-centro" />
+			<p:selectBooleanCheckbox value=""
+				itemLabel="Artes Plásticas, Artes Gráfica e congêneres (Artes Visuais)" />
+			<p:selectBooleanCheckbox value="" itemLabel="Artesanato" />
+			<p:selectBooleanCheckbox value="" itemLabel="Circo" />
+			<p:selectBooleanCheckbox value=""
+				itemLabel="Cultura Popular e Tradicional" />
+			<p:selectBooleanCheckbox value="" itemLabel="Dança" />
+			<p:selectBooleanCheckbox value="" itemLabel="Design e Moda" />
+			<p:selectBooleanCheckbox value="" itemLabel="Fotografia" />
+			<p:selectBooleanCheckbox value="" itemLabel="Gastronomia" />
+			<p:selectBooleanCheckbox value="" itemLabel="Literatura" />
+			<p:selectBooleanCheckbox value="" itemLabel="Música" />
+			<p:selectBooleanCheckbox value="" itemLabel="Patrimônio" />
+			<p:selectBooleanCheckbox value="" itemLabel="Teatro" />
+			<p:selectBooleanCheckbox value="" itemLabel="Formação e Capacitação" />
+			<p:selectBooleanCheckbox value="" itemLabel="Pesquisa Cultural" />
+			<p:selectBooleanCheckbox value="" itemLabel="Audiovisual" />
+			<p:selectBooleanCheckbox value="" itemLabel="Cultura Afro Brasileira" />
+			<p:selectBooleanCheckbox value="" itemLabel="Cultura Geek" />
+			<p:selectBooleanCheckbox value="" itemLabel="Diversidade Sexual" />
+			<p:selectBooleanCheckbox value="" itemLabel="Arte Urbana" />
+			<p:selectBooleanCheckbox value="" itemLabel="Produção cultural" />
+
+			<p:outputLabel
+				value="Indique em qual(is) modalidade(s) o espaço cultural se insere de acordo com a principal atividade artística e cultural que exerce na cadeia produtiva e de formação do município:"
+				for="modalidades-centro" />
+			<p:selectBooleanCheckbox value=""
+				itemLabel="Ponto e Pontão de cultura" />
+			<p:selectBooleanCheckbox value="" itemLabel="Teatro independente" />
+			<p:selectBooleanCheckbox value=""
+				itemLabel="Escola de música, Capoeira e Artes, estúdio, companhia e escola de dança" />
+			<p:selectBooleanCheckbox value="" itemLabel="Circo" />
+			<p:selectBooleanCheckbox value="" itemLabel="Cineclube" />
+			<p:selectBooleanCheckbox value=""
+				itemLabel="Centro cultural, casa de cultura e centro de tradição regional e/ou local" />
+			<p:selectBooleanCheckbox value=""
+				itemLabel="Museu comunitário, centro de memória e patrimônio" />
+			<p:selectBooleanCheckbox value="" itemLabel="Biblioteca comunitária" />
+			<p:selectBooleanCheckbox value=""
+				itemLabel="Espaço cultural em Comunidade Indígena" />
+			<p:selectBooleanCheckbox value=""
+				itemLabel="Centro Artístico e Cultural Afrodescendente" />
+			<p:selectBooleanCheckbox value="" itemLabel="Comunidade Quilombola" />
+			<p:selectBooleanCheckbox value=""
+				itemLabel="Espaço de Povos e Comunidades Tradicionais" />
+			<p:selectBooleanCheckbox value=""
+				itemLabel="Festa popular (Carnaval, São João e outras de caráter regional)" />
+			<p:selectBooleanCheckbox value=""
+				itemLabel="Teatro de Rua e demais expressões artísticas e culturais realizadas em espaços públicos" />
+			<p:selectBooleanCheckbox value=""
+				itemLabel="Livraria, editora e sebo" />
+			<p:selectBooleanCheckbox value=""
+				itemLabel="Empresa de diversões e produção de espetáculos" />
+			<p:selectBooleanCheckbox value="" itemLabel="Estúdio de Fotografia" />
+			<p:selectBooleanCheckbox value=""
+				itemLabel="Produtora de cinema e audiovisual" />
+			<p:selectBooleanCheckbox value=""
+				itemLabel="Ateliê de pintura, moda, design e artesanato" />
+			<p:selectBooleanCheckbox value=""
+				itemLabel="Galeria de Arte e de Fotografia" />
+			<p:selectBooleanCheckbox value=""
+				itemLabel="Feira de arte e artesanato" />
+			<p:selectBooleanCheckbox value=""
+				itemLabel="Espaço de apresentação musical" />
+			<p:selectBooleanCheckbox value=""
+				itemLabel="Espaço de literatura, poesia e literatura de cordel" />
+			<p:selectBooleanCheckbox value=""
+				itemLabel="Espaço e Centro de cultura alimentar de base comunitária, agroecológica e de culturas originárias, tradicionais e populares" />
+
+
+			<p:outputLabel value="Anexe aqui sua clipagem/fotos" for="anexos-ec" />
+			<p:fileUpload required="true" value="" id="anexos-ec"
+				requiredMessage="As fotos são obrigatórias!" mode="simple"
+				skinSimple="true" accept="image/*|.pdf"
+				invalidFileMessage="O documento deve ser uma imagem ou um arquivo .pdf!" />
+			<p:message for="anexos-ec" />
+
+			<p:outputLabel
+				value="Breve histórico e descrição das principais atividades culturais realizadas no Espaço Cultural:"
+				for="atividades-culturais-antigas" />
+			<p:inputText required="true" value="" id="atividades-culturais-antigas"
+				requiredMessage="A descrição é obrigatória!"
+				placeholder="Escreva a descrição das atividades aqui" />
+			<p:message for="atividades-culturais-antigas" />
+
+			<p:outputLabel value="Facebook:" for="facebook-ec" />
+			<p:inputText required="false" value="" id="facebook-ec"
+				placeholder="Facebook do Espaço cultural" />
+			<p:message for="facebook-ec" />
+
+			<p:outputLabel value="Instagram" for="instagram-ec" />
+			<p:inputText required="false" value="" id="instagram"
+				placeholder="Instagram do Espaço cultural" />
+			<p:message for="instagram" />
+
+			<p:outputLabel value="Youtube" for="youtube-ec" />
+			<p:inputText required="false" value="" id="youtube-ec"
+				placeholder="Youtube do Espaço cultural" />
+			<p:message for="youtube-ec" />
+
+			<p:outputLabel value="Site ou repositório online" for="site-ec" />
+			<p:inputText required="false" value="" id="site-ec"
+				placeholder="site do Espaço cultural" />
+			<p:message for="site-ec" />
+
+			<p:outputLabel
+				value="Quanto de sua renda mensal foi impactada pela pandemia?"
+				for="renda-pos-pandemia" />
+			<p:selectOneRadio id="renda-pos-pandemia" value="" unselectable="true" required="true">
+				<f:selectItem itemlabel="0%" itemValue="" />
+				<f:selectItem itemlabel="Até 25%" itemValue="" />
+				<f:selectItem itemlabel="Entre 25% e 50%" itemValue="" />
+				<f:selectItem itemlabel="Entre 50% e 75%" itemValue="" />
+				<f:selectItem itemlabel="Entre 75% e 100%" itemValue="" />
+			</p:selectOneRadio>
+
+			<p:outputLabel
+				value="Indique a(s) principal(is) linguagem(s) cultural(is) em que atua:"
+				for="linguagens-centro" />
+			<p:selectBooleanCheckbox value=""
+				itemLabel="Cadastro estadual de cultura" />
+			<p:selectBooleanCheckbox value=""
+				itemLabel="Cadastro Nacional de Pontos e Pontões de Cultura" />
+			<p:selectBooleanCheckbox value=""
+				itemLabel="Cadastro Estadual de Pontos e Pontões de Cultura" />
+			<p:selectBooleanCheckbox value=""
+				itemLabel="Sistema Nacional de Informações e Indicadores Culturais (SNIIC)" />
+			<p:selectBooleanCheckbox value=""
+				itemLabel="Sistema de Informações Cadastrais do Artesanato Brasileiro (SICAB)" />
+			<p:selectBooleanCheckbox value="" itemLabel="Nenhum" />
+
+
+			<p:outputLabel
+				value="Anexar Documento(s) de Homologação – caso tenha cadastro em um ou mais dos itens citados acima"
+				for="anexos-homologacao" />
+			<p:fileUpload required="false" value="" id="anexos-homologacao"
+				mode="simple" skinSimple="true" accept="image/*|.pdf"
+				invalidFileMessage="O documento deve ser uma imagem ou um arquivo .pdf!" />
+			<p:message for="anexos-homologacao" />
+
+			<p:outputLabel
+				value="Ao preencher e enviar esse formulário, declaro a veracidade de todas as informações prestadas, assumo a inteira responsabilidade pelas mesmas e autorizo o acesso e uso dos meus dados para validação. Declaro ainda estar ciente de que a declaração falsa no presente cadastro se enquadrada em crime de falsidade ideológica (Art. 299 do Código Penal) e estará sujeita a sanções penais sem prejuízo de medidas administrativas e outras."
+				for="termo-responsabilidade" />
+			<p:selectOneRadio id="termo-responsabilidade" value="" unselectable="true" required="true">
+				<f:selectItem itemlabel="Aceito o termo e desejo continuar"
+					itemValue="" />
+			</p:selectOneRadio>
+
+		</p:panelGrid>
+	</h:form>
+
+</h:body>
+
+</html>
