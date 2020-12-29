@@ -1,11 +1,14 @@
 package beans;
 
-import java.awt.List;
+import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 
 import entities.EspacoCultural;
+import exceptions.PersistenciaException;
+import persistence.EspacoCulturalPersistencia;
 
 /**
  * Classe EJB que possui os métodos de manipulação e consulta do repositório de
@@ -20,21 +23,28 @@ import entities.EspacoCultural;
 @Stateless
 @Local
 public class EspacoCulturalBean {
+	
+	@EJB
+	private EspacoCulturalPersistencia espacoCulturalPersistencia;
 
-	public EspacoCultural criarEspaco(EspacoCultural espacoCultural) {
-		return null;
+	public void criarEspaco(EspacoCultural espacoCultural) throws PersistenciaException {
+		
+		
+		this.espacoCulturalPersistencia.adicionarEspacoCultural(espacoCultural);
 
 		/* método cria e adiciona um novo centro cultural */
 	}
 
-	public EspacoCultural buscarCentroPorCnpj(String cnpj) {
-		return null;
-
-		/* método busca um centro cultural pelo cnpj de cadastro */
+	public EspacoCultural buscarCentroPorCnpj(String cnpj) throws PersistenciaException {
+		
+		return this.espacoCulturalPersistencia.pegarEspacosPorCnpj(cnpj);
+		
 	}
 
-	public List buscarTodosOsCentros() {
-		return null;
+	public List<EspacoCultural> buscarTodosOsCentros() throws PersistenciaException {
+		
+		return this.espacoCulturalPersistencia.pegarTodosEspacos();
+		
 
 		/*
 		 * método mostra uma lista com todos os centros culturais salvos no banco de
@@ -42,12 +52,19 @@ public class EspacoCulturalBean {
 		 */
 	}
 
-	public void apagarEspaco(EspacoCultural espacocultural) {
+	public void apagarEspacoPorCnpj(String cnpj) throws PersistenciaException {
+		
+		this.espacoCulturalPersistencia.removerEspacoPorCnpj(cnpj);
+		
 		/* deleta um espaço cultural salvo no banco */
 	}
 
-	public EspacoCultural atualizarEspaco(String tipoEspacoCultural, String telefone, String endereco) {
-		return null;
+	public void atualizarEspaco(EspacoCultural espacoCultural) throws PersistenciaException {
+		
+		this.espacoCulturalPersistencia.atualizarEspaco(espacoCultural);
+			
+		 
+		
 		/* atualiza informações importantes sobre o espaço cultural no banco */
 	}
 

@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
@@ -21,6 +23,10 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "espacos_culturais")
+@NamedNativeQueries(value = {
+		@NamedNativeQuery(name = "EspacoCultural.pegarEspacoPorCNPJ", query = "SELECT * FROM espacos_culturais WHERE cnpj = ?", resultClass = EspacoCultural.class),
+		@NamedNativeQuery(name = "EspacoCultural.pegarTodosEspacos", query = "SELECT * FROM espacos_culturais", resultClass = EspacoCultural.class)
+		})
 public class EspacoCultural extends Entidade{
 	/**
 	 * 
