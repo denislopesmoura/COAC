@@ -10,8 +10,7 @@ import javax.inject.Named;
  *
  */
 
-@Named(value="segmentoCulturalMB")
-@SessionScoped
+@Named(value = "segmentoCulturalMB")
 public class SegmentoCulturalMB {
 	
 	@PostConstruct

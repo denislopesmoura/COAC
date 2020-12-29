@@ -57,17 +57,16 @@ public class Trabalhador extends Entidade {
 	@Column(nullable = false, name = "escolaridade")
 	private Escolaridade escolaridade;
 
-	@NotEmpty
+	
 	@Column(nullable = false, name = "profissao")
 	private String profissao;
 
-	@NotNull
+	
 	@Column(nullable = false, name = "drt")
 	private boolean drt;
 	
 	//Relacionamento n-to-n entre os espacos culturais e o trabalhador. 
-	@NotNull
-	@NotEmpty
+	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "trabalhador_tipo_espaco_cultural",
 				joinColumns = @JoinColumn (name = "trabalhador_id"),
@@ -76,8 +75,7 @@ public class Trabalhador extends Entidade {
 	private Set<TipoEspacoCultural> espacoCultural = new HashSet<TipoEspacoCultural>();
 	
 	//Relacionamento n-to-n entre os segmentos culturais e o trabalhador. 
-	@NotNull
-	@NotEmpty
+	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "trabalhador_segmento_cultural",
 				joinColumns = @JoinColumn (name = "trabalhador_id"),
@@ -85,31 +83,31 @@ public class Trabalhador extends Entidade {
 	)
 	private Set<SegmentoCultural> segmentoCultural = new HashSet<SegmentoCultural>();
 
-	@NotNull
+	
 	@Column(nullable = false, name = "curriculo_artistico")
 	private File curriculoArtistico;
 
-	@NotEmpty
+	
 	@Column(nullable = true, name = "facebook")
 	private String facebook;
 
-	@NotEmpty
+	
 	@Column(nullable = true, name = "instagram")
 	private String instagram;
 
-	@NotEmpty
+	
 	@Column(nullable = true, name = "youtube")
 	private String youtube;
 
-	@NotEmpty
+	
 	@Column(nullable = true, name = "repositorio_online")
 	private String repositorioOnline;
 
-	@NotEmpty
+	
 	@Column(nullable = false, name = "renda_mensal_cultural")
 	private String rendaMensalProducoesCulturais;
 
-	@NotEmpty
+	
 	@Column(nullable = false, name = "renda_anual_2018")
 	private String rendaAnual2018;
 
@@ -117,11 +115,11 @@ public class Trabalhador extends Entidade {
 	@Column(nullable = true, name = "beneficios")
 	private List<Beneficios> beneficios;
 
-	@NotEmpty
+	
 	@Column(nullable = true, name = "homologado_cadastro")
 	private List<File> cadastros;
 
-	@NotEmpty
+	
 	@Column(nullable = true, name = "documento_homologacao")
 	private File documentoHomologacao;
 
