@@ -21,14 +21,14 @@
 
 			<p:outputLabel value="Nome Artístico" for="nome_artistico" />
 			<p:inputText required="true"
-				value="#{trabalhadorMB.trabalhadorBean.nomeArtistico}"
+				value="#{trabalhadorMB.trabalhador.nomeArtistico}"
 				id="nome_artistico"
 				requiredMessage="O nome artístico é um campo obrigatório!"
 				placeholder="Insira o nome artístico aqui" />
 			<p:message for="nome_artistico" />
 
 			<p:outputLabel value="MEI" for="mei" />
-			<p:inputText value="#{trabalhadorMB.trabalhadorBean.mei}" id="mei"
+			<p:inputText value="#{trabalhadorMB.trabalhador.mei}" id="mei"
 				placeholder="Insira o MEI aqui" mask="99.999.999/9999-99" />
 
 			<p:importEnum type="entities.Cor" var="ENUM_COR"
@@ -37,7 +37,7 @@
 			<p:outputLabel value="Cor" for="color" />
 			<p:selectOneListbox id="color" required="true"
 				requiredMessage="A cor é um campo obrigatório" placeholder="cor"
-				value="#{trabalhadorMB.trabalhadorBean.cor}">
+				value="#{trabalhadorMB.trabalhador.cor}">
 				<f:selectItem itemLabel="Branca" itemValue="#{ENUM_COR.BRANCA}" />
 				<f:selectItem itemLabel="Preta" itemValue="#{ENUM_COR.PRETA}" />
 				<f:selectItem itemLabel="Parda" itemValue="#{ENUM_COR.PARDA}" />
@@ -53,7 +53,7 @@
 			<p:outputLabel for="gender" value="Gênero" />
 			<p:selectOneListbox id="gender" required="true"
 				requiredMessage="O gênero é um campo obrigatório"
-				placeholder="gênero" value="#{trabalhadorMB.trabalhadorBean.genero}">
+				placeholder="gênero" value="#{trabalhadorMB.trabalhador.genero}">
 				<f:selectItem itemLabel="Masculino"
 					itemValue="#{ENUM_GENERO.MASCULINO}" />
 				<f:selectItem itemLabel="Feminino"
@@ -69,7 +69,7 @@
 			<p:selectOneListbox id="escolarity" required="true"
 				requiredMessage="A escolaridade é um campo obrigatório"
 				placeholder="escolaridade"
-				value="#{trabalhadorMB.trabalhadorBean.escolaridade}">
+				value="#{trabalhadorMB.trabalhador.escolaridade}">
 				<f:selectItem itemLabel="#{ENUM_ESCOLARITY.EFI.Descricao}"
 					itemValue="#{ENUM_ESCOLARITY.EFI}" />
 				<f:selectItem itemLabel="#{ENUM_ESCOLARITY.EFC.Descricao}"
@@ -89,7 +89,7 @@
 			<p:inputText required="true"
 				requiredMessage="A profissão é um campo obrigatório"
 				placeholder="Insira a profissão aqui"
-				value="#{trabalhadorMB.trabalhadorBean.profissao}" />
+				value="#{trabalhadorMB.trabalhador.profissao}" />
 			<p:message for="job" />
 
 			<p:outputLabel value="DRT" />
@@ -105,35 +105,35 @@
 			<!-- 			<p:message for="segment"/> -->
 
 			<p:outputLabel value="Facebook" for="facebook" />
-			<p:inputText value="#{trabalhadorMB.trabalhadorBean.facebook}"
+			<p:inputText value="#{trabalhadorMB.trabalhador.facebook}"
 				id="facebook" placeholder="Insira o facebook aqui" />
 			<p:message for="facebook" />
 
 			<p:outputLabel value="Instagram" for="instagram" />
-			<p:inputText value="#{trabalhadorMB.trabalhadorBean.instagram}"
+			<p:inputText value="#{trabalhadorMB.trabalhador.instagram}"
 				id="instagram" placeholder="Insira o instagram aqui" />
 			<p:message for="instagram" />
 
 			<p:outputLabel value="Youtube" for="youtube" />
-			<p:inputText value="#{trabalhadorMB.trabalhadorBean.youtube}"
+			<p:inputText value="#{trabalhadorMB.trabalhador.youtube}"
 				id="youtube" placeholder="Insira o youtube aqui" />
 			<p:message for="youtube" />
 
 			<p:outputLabel value="Repositório Online" for="repo" />
-			<p:inputText value="#{trabalhadorMB.trabalhadorBean.repositorioOnline}"
+			<p:inputText value="#{trabalhadorMB.trabalhador.repositorioOnline}"
 				id="repo" placeholder="Insira o repositorio online aqui" />
 			<p:message for="repo" />
 
 			<p:outputLabel value="Renda Mensal Cultural" for="renda" />
 			<p:inputText required="true"
-				value="#{trabalhadorMB.trabalhadorBean.rendaMensalProducoesCulturais}"
+				value="#{trabalhadorMB.trabalhador.rendaMensalProducoesCulturais}"
 				id="renda" requiredMessage="A renda mensal é um campo obrigatório!"
 				placeholder="Insira a renda mensal aqui" />
 			<p:message for="renda" />
 
 			<p:outputLabel value="Renda 2018" for="renda_anual" />
 			<p:inputText required="true"
-				value="#{trabalhadorMB.trabalhadorBean.rendaAnual2018}" id="renda_anual"
+				value="#{trabalhadorMB.trabalhador.rendaAnual2018}" id="renda_anual"
 				requiredMessage="A renda anual 2018 é um campo obrigatório!"
 				placeholder="Insira a renda anual aqui" />
 			<p:message for="renda_anual" />
@@ -143,7 +143,7 @@
 
 			<p:outputLabel value="Benefícios" for="benefit" />
 			<p:selectManyCheckbox id="benefit"
-				value="#{trabalhadorMB.trabalhadorBean.beneficios}">
+				value="#{trabalhadorMB.trabalhador.beneficios}">
 				<f:selectItem itemLabel="#{ENUM_BENEFIT.BP.Descricao}" itemValue="#{ENUM_BENEFIT.BP}" />
 				<f:selectItem itemLabel="#{ENUM_BENEFIT.BA.Descricao}" itemValue="#{ENUM_BENEFIT.BA}" />
 				<f:selectItem itemLabel="#{ENUM_BENEFIT.BSD.Descricao}" itemValue="#{ENUM_BENEFIT.BSD}" />
@@ -154,7 +154,7 @@
 
 			<p:outputLabel value="Currículo artístico" for="curriculo" />
 			<p:fileUpload required="true"
-				value="#{trabalhadorMB.trabalhadorBean.curriculoArtistico}"
+				value="#{trabalhadorMB.trabalhador.curriculoArtistico}"
 				id="curriculo"
 				requiredMessage="O currículo artístico é um campo obrigatório!"
 				mode="simple" skinSimple="true" accept="application/pdf, image/*"

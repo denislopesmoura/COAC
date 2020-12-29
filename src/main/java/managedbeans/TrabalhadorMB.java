@@ -3,6 +3,7 @@ package managedbeans;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import org.primefaces.model.file.UploadedFile;
@@ -19,6 +20,7 @@ import exceptions.PersistenciaException;
  */
 
 @Named(value = "trabalhadorMB")
+@SessionScoped
 public class TrabalhadorMB {
 
 	@EJB
