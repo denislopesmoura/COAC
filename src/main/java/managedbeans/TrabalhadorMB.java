@@ -5,6 +5,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 
+import org.primefaces.model.file.UploadedFile;
+
 import beans.TrabalhadorBean;
 import entities.Trabalhador;
 import exceptions.PersistenciaException;
@@ -16,11 +18,17 @@ import exceptions.PersistenciaException;
  *
  */
 
-@Named
+@Named(value = "trabalhadorMB")
 public class TrabalhadorMB {
 
 	@EJB
-	TrabalhadorBean trabalhadorBean;
+	private TrabalhadorBean trabalhadorBean;
+	
+	private Trabalhador trabalhador;
+	
+	private List<UploadedFile> cadastrosFile;
+	
+	private UploadedFile documentoHomologação;
 
 	/**
 	 * Cria um novo trabalhador no banco de dados
@@ -82,5 +90,29 @@ public class TrabalhadorMB {
 
 	public Trabalhador pegarTrabalhadorPorMei(String mei) throws PersistenciaException {
 		return trabalhadorBean.pegarTrabalhadorPorMei(mei);
+	}
+
+	public Trabalhador getTrabalhador() {
+		return trabalhador;
+	}
+
+	public void setTrabalhador(Trabalhador trabalhador) {
+		this.trabalhador = trabalhador;
+	}
+
+	public List<UploadedFile> getCadastrosFile() {
+		return cadastrosFile;
+	}
+
+	public void setCadastrosFile(List<UploadedFile> cadastrosFile) {
+		this.cadastrosFile = cadastrosFile;
+	}
+
+	public UploadedFile getDocumentoHomologação() {
+		return documentoHomologação;
+	}
+
+	public void setDocumentoHomologação(UploadedFile documentoHomologação) {
+		this.documentoHomologação = documentoHomologação;
 	}
 }
