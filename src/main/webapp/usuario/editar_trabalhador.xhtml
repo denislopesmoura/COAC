@@ -35,54 +35,68 @@
 				allSuffix="ALL_ENUM_VALUES" />
 
 			<p:outputLabel value="Cor" for="color" />
-			<p:selectOneListbox id="color" required="true"
-				requiredMessage="A cor é um campo obrigatório" placeholder="cor"
-				value="#{trabalhadorMB.trabalhador.cor}">
-				<f:selectItem itemLabel="Branca" itemValue="#{ENUM_COR.BRANCA}" />
-				<f:selectItem itemLabel="Preta" itemValue="#{ENUM_COR.PRETA}" />
-				<f:selectItem itemLabel="Parda" itemValue="#{ENUM_COR.PARDA}" />
-				<f:selectItem itemLabel="Indígena" itemValue="#{ENUM_COR.INDIGENA}" />
-				<f:selectItem itemLabel="Amarela" itemValue="#{ENUM_COR.AMARELA}" />
-				<f:selectItem itemLabel="Outra" itemValue="#{ENUM_COR.OUTRO}" />
+			
+			<p:selectOneListbox id="color" required="true" value="#{ENUM_COR}">
+				<f:selectItems var="p" itemLabel="#{p}" value="#{trabalhadorMB.trabalhador.cor}"  />
 			</p:selectOneListbox>
+			
+<!-- 			<p:selectOneListbox id="color" required="true" -->
+<!-- 				requiredMessage="A cor é um campo obrigatório" placeholder="cor" -->
+<!-- 				value="#{trabalhadorMB.trabalhador.cor}"> -->
+<!-- 				<f:selectItem itemLabel="Branca" itemValue="#{ENUM_COR.BRANCA}" /> -->
+<!-- 				<f:selectItem itemLabel="Preta" itemValue="#{ENUM_COR.PRETA}" /> -->
+<!-- 				<f:selectItem itemLabel="Parda" itemValue="#{ENUM_COR.PARDA}" /> -->
+<!-- 				<f:selectItem itemLabel="Indígena" itemValue="#{ENUM_COR.INDIGENA}" /> -->
+<!-- 				<f:selectItem itemLabel="Amarela" itemValue="#{ENUM_COR.AMARELA}" /> -->
+<!-- 				<f:selectItem itemLabel="Outra" itemValue="#{ENUM_COR.OUTRA}" /> -->
+<!-- 			</p:selectOneListbox> -->
 			<p:message for="color" />
 
 			<p:importEnum type="entities.Genero" var="ENUM_GENERO"
 				allSuffix="ALL_ENUM_VALUES" />
-
-			<p:outputLabel for="gender" value="Gênero" />
-			<p:selectOneListbox id="gender" required="true"
-				requiredMessage="O gênero é um campo obrigatório"
-				placeholder="gênero" value="#{trabalhadorMB.trabalhador.genero}">
-				<f:selectItem itemLabel="Masculino"
-					itemValue="#{ENUM_GENERO.MASCULINO}" />
-				<f:selectItem itemLabel="Feminino"
-					itemValue="#{ENUM_GENERO.FEMININO}" />
-				<f:selectItem itemLabel="Outro" itemValue="#{ENUM_GENERO.OUTRO}" />
+				
+			<p:selectOneListbox id="gender" required="true" value="#{ENUM_GENERO}">
+				<f:selectItems var="p" itemLabel="#{p}" value="#{trabalhadorMB.trabalhador.genero}"  />
 			</p:selectOneListbox>
+
+<!-- 			<p:outputLabel for="gender" value="Gênero" /> -->
+<!-- 			<p:selectOneListbox id="gender" required="true" -->
+<!-- 				requiredMessage="O gênero é um campo obrigatório" -->
+<!-- 				placeholder="gênero" value="#{trabalhadorMB.trabalhador.genero}"> -->
+<!-- 				<f:selectItem itemLabel="Masculino" -->
+<!-- 					itemValue="#{ENUM_GENERO.MASCULINO}" /> -->
+<!-- 				<f:selectItem itemLabel="Feminino" -->
+<!-- 					itemValue="#{ENUM_GENERO.FEMININO}" /> -->
+<!-- 				<f:selectItem itemLabel="Outro" itemValue="#{ENUM_GENERO.OUTRO}" /> -->
+<!-- 			</p:selectOneListbox> -->
 			<p:message for="gender" />
 
 			<p:importEnum type="entities.Escolaridade" var="ENUM_ESCOLARITY"
 				allSuffix="ALL_ENUM_VALUES" />
 
 			<p:outputLabel for="escolarity" value="Escolaridade" />
-			<p:selectOneListbox id="escolarity" required="true"
-				requiredMessage="A escolaridade é um campo obrigatório"
-				placeholder="escolaridade"
-				value="#{trabalhadorMB.trabalhador.escolaridade}">
-				<f:selectItem itemLabel="#{ENUM_ESCOLARITY.EFI.Descricao}"
-					itemValue="#{ENUM_ESCOLARITY.EFI}" />
-				<f:selectItem itemLabel="#{ENUM_ESCOLARITY.EFC.Descricao}"
-					itemValue="#{ENUM_ESCOLARITY.EFC}" />
-				<f:selectItem itemLabel="#{ENUM_ESCOLARITY.EMI.Descricao}"
-					itemValue="#{ENUM_ESCOLARITY.EMI}" />
-				<f:selectItem itemLabel="#{ENUM_ESCOLARITY.EMC.Descricao}"
-					itemValue="#{ENUM_ESCOLARITY.EMC}" />
-				<f:selectItem itemLabel="#{ENUM_ESCOLARITY.ESI.Descricao}"
-					itemValue="#{ENUM_ESCOLARITY.ESI}" />
-				<f:selectItem itemLabel="#{ENUM_ESCOLARITY.ESC.Descricao}"
-					itemValue="#{ENUM_ESCOLARITY.ESC}" />
+			
+			<p:selectOneListbox id="escolarity" required="true" value="#{ENUM_ESCOLARITY}">
+				<f:selectItems var="p" itemLabel="#{p.descricao}" value="#{trabalhadorMB.trabalhador.escolaridade}"  />
 			</p:selectOneListbox>
+			
+<!-- 			<p:selectOneListbox id="escolarity" required="true" -->
+<!-- 				requiredMessage="A escolaridade é um campo obrigatório" -->
+<!-- 				placeholder="escolaridade" -->
+<!-- 				value="#{trabalhadorMB.trabalhador.escolaridade}"> -->
+<!-- 				<f:selectItem itemLabel="#{ENUM_ESCOLARITY.EFI.Descricao}" -->
+<!-- 					itemValue="#{ENUM_ESCOLARITY.EFI}" /> -->
+<!-- 				<f:selectItem itemLabel="#{ENUM_ESCOLARITY.EFC.Descricao}" -->
+<!-- 					itemValue="#{ENUM_ESCOLARITY.EFC}" /> -->
+<!-- 				<f:selectItem itemLabel="#{ENUM_ESCOLARITY.EMI.Descricao}" -->
+<!-- 					itemValue="#{ENUM_ESCOLARITY.EMI}" /> -->
+<!-- 				<f:selectItem itemLabel="#{ENUM_ESCOLARITY.EMC.Descricao}" -->
+<!-- 					itemValue="#{ENUM_ESCOLARITY.EMC}" /> -->
+<!-- 				<f:selectItem itemLabel="#{ENUM_ESCOLARITY.ESI.Descricao}" -->
+<!-- 					itemValue="#{ENUM_ESCOLARITY.ESI}" /> -->
+<!-- 				<f:selectItem itemLabel="#{ENUM_ESCOLARITY.ESC.Descricao}" -->
+<!-- 					itemValue="#{ENUM_ESCOLARITY.ESC}" /> -->
+<!-- 			</p:selectOneListbox> -->
 			<p:message for="escolarity" />
 
 			<p:outputLabel for="job" value="Profissão" />
@@ -144,12 +158,12 @@
 			<p:outputLabel value="Benefícios" for="benefit" />
 			<p:selectManyCheckbox id="benefit"
 				value="#{trabalhadorMB.trabalhador.beneficios}">
-				<f:selectItem itemLabel="#{ENUM_BENEFIT.BP.Descricao}" itemValue="#{ENUM_BENEFIT.BP}" />
-				<f:selectItem itemLabel="#{ENUM_BENEFIT.BA.Descricao}" itemValue="#{ENUM_BENEFIT.BA}" />
-				<f:selectItem itemLabel="#{ENUM_BENEFIT.BSD.Descricao}" itemValue="#{ENUM_BENEFIT.BSD}" />
-				<f:selectItem itemLabel="#{ENUM_BENEFIT.PTRF.Descricao}" itemValue="#{ENUM_BENEFIT.PTRF}" />
-				<f:selectItem itemLabel="#{ENUM_BENEFIT.BAE.Descricao}" itemValue="#{ENUM_BENEFIT.BAE}" />
-				<f:selectItem itemLabel="#{ENUM_BENEFIT.NDA.Descricao}" itemValue="#{ENUM_BENEFIT.NDA}" />
+				<f:selectItem itemLabel="#{ENUM_BENEFIT.BP.descricao}" itemValue="#{ENUM_BENEFIT.BP}" />
+				<f:selectItem itemLabel="#{ENUM_BENEFIT.BA.descricao}" itemValue="#{ENUM_BENEFIT.BA}" />
+				<f:selectItem itemLabel="#{ENUM_BENEFIT.BSD.descricao}" itemValue="#{ENUM_BENEFIT.BSD}" />
+				<f:selectItem itemLabel="#{ENUM_BENEFIT.PTRF.descricao}" itemValue="#{ENUM_BENEFIT.PTRF}" />
+				<f:selectItem itemLabel="#{ENUM_BENEFIT.BAE.descricao}" itemValue="#{ENUM_BENEFIT.BAE}" />
+				<f:selectItem itemLabel="#{ENUM_BENEFIT.NDA.descricao}" itemValue="#{ENUM_BENEFIT.NDA}" />
 			</p:selectManyCheckbox>
 
 			<p:outputLabel value="Currículo artístico" for="curriculo" />
