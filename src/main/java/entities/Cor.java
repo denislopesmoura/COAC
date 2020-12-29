@@ -7,5 +7,5 @@ package entities;
  */
 public enum Cor {
 	
-	BRANCA, PRETA, PARDA, INDÍGINA, AMARELA, OUTRO
+	BRANCA, PRETA, PARDA, INDIGENA, AMARELA, OUTRA
 }

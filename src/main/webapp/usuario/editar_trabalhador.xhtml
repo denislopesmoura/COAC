@@ -7,10 +7,10 @@
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Editar Usuário</title>
+	<title>Editar Trabalhador</title>
 </h:head>
 <h:body>
-	<p:outputLabel value="Editar Usuários" />
+	<p:outputLabel value="Editar Trabalhador" />
 	<p:separator />
 
 	<p:growl id="growl" sticky="true" globalOnly="true" />
@@ -18,118 +18,151 @@
 	<h:form enctype="multipart/form-data" id="form-trabalhador">
 		<p:panelGrid columns="3"
 			styleClass="p-align-baseline ui-fluid ui-noborder">
-			
+
 			<p:outputLabel value="Nome Artístico" for="nome_artistico" />
-			<p:inputText required="true" value="#{trabalhadorMB.trabalhador.nomeArtistico}"
-				id="nome_artistico" requiredMessage="O nome artístico é um campo obrigatório!"
+			<p:inputText required="true"
+				value="#{trabalhadorMB.trabalhadorBean.nomeArtistico}"
+				id="nome_artistico"
+				requiredMessage="O nome artístico é um campo obrigatório!"
 				placeholder="Insira o nome artístico aqui" />
 			<p:message for="nome_artistico" />
 
 			<p:outputLabel value="MEI" for="mei" />
-			<p:password required="true" value="#{trabalhadorMB.trabalhador.mei}"
-				id="mei" requiredMessage="O MEI é um campo obrigatório!"
+			<p:inputText value="#{trabalhadorMB.trabalhadorBean.mei}" id="mei"
 				placeholder="Insira o MEI aqui" mask="99.999.999/9999-99" />
-			<p:message for="mei" />
+
+			<p:importEnum type="entities.Cor" var="ENUM_COR"
+				allSuffix="ALL_ENUM_VALUES" />
 
 			<p:outputLabel value="Cor" for="color" />
-			<p:selectOneListbox id="color" required="true" 
-				requiredMessage="A cor é um campo obrigatório" 
-				placeholder="cor"
-				value="#{trabalhadorMB.trabalhador.cor}">
-            	<f:selectItem itemLabel="Branca" itemValue="branca" />
-            	<f:selectItem itemLabel="Preta" itemValue="preta" />
-            	<f:selectItem itemLabel="Parda" itemValue="parda" />
-            	<f:selectItem itemLabel="Indígena" itemValue="indigena" />
-            	<f:selectItem itemLabel="Amarela" itemValue="amarela" />
-        	</p:selectOneListbox>
+			<p:selectOneListbox id="color" required="true"
+				requiredMessage="A cor é um campo obrigatório" placeholder="cor"
+				value="#{trabalhadorMB.trabalhadorBean.cor}">
+				<f:selectItem itemLabel="Branca" itemValue="#{ENUM_COR.BRANCA}" />
+				<f:selectItem itemLabel="Preta" itemValue="#{ENUM_COR.PRETA}" />
+				<f:selectItem itemLabel="Parda" itemValue="#{ENUM_COR.PARDA}" />
+				<f:selectItem itemLabel="Indígena" itemValue="#{ENUM_COR.INDIGENA}" />
+				<f:selectItem itemLabel="Amarela" itemValue="#{ENUM_COR.AMARELA}" />
+				<f:selectItem itemLabel="Outra" itemValue="#{ENUM_COR.OUTRO}" />
+			</p:selectOneListbox>
 			<p:message for="color" />
 
+			<p:importEnum type="entities.Genero" var="ENUM_GENERO"
+				allSuffix="ALL_ENUM_VALUES" />
+
 			<p:outputLabel for="gender" value="Gênero" />
-	        <p:selectOneListbox id="gender" required="true"
-	        	requiredMessage="O gênerero é um campo obrigatório" 
-	        	placeholder="gênero"
-	        	value="#{trabalhadorMB.trabalhador.genero}">
-	            <f:selectItem itemLabel="Masculino" itemValue="masculino" />
-	            <f:selectItem itemLabel="Feminino" itemValue="feminino" />
-	        </p:selectOneListbox>
+			<p:selectOneListbox id="gender" required="true"
+				requiredMessage="O gênero é um campo obrigatório"
+				placeholder="gênero" value="#{trabalhadorMB.trabalhadorBean.genero}">
+				<f:selectItem itemLabel="Masculino"
+					itemValue="#{ENUM_GENERO.MASCULINO}" />
+				<f:selectItem itemLabel="Feminino"
+					itemValue="#{ENUM_GENERO.FEMININO}" />
+				<f:selectItem itemLabel="Outro" itemValue="#{ENUM_GENERO.OUTRO}" />
+			</p:selectOneListbox>
 			<p:message for="gender" />
 
+			<p:importEnum type="entities.Escolaridade" var="ENUM_ESCOLARITY"
+				allSuffix="ALL_ENUM_VALUES" />
+
 			<p:outputLabel for="escolarity" value="Escolaridade" />
-			<p:selectOneListbox id="escolarity" 
-				required="true"
+			<p:selectOneListbox id="escolarity" required="true"
 				requiredMessage="A escolaridade é um campo obrigatório"
 				placeholder="escolaridade"
-				value="#{trabalhadorMB.trabalhador.escolaridade}">
-	            <f:selectItem itemLabel="Analfabeto" itemValue="analfabeto" />
-	            <f:selectItem itemLabel="Fundamental" itemValue="fundamental" />
-	            <f:selectItem itemLabel="Médio" itemValue="medio" />
-	            <f:selectItem itemLabel="Superior Incompleto" itemValue="superior incompleto" />
-	            <f:selectItem itemLabel="Superior Completo" itemValue="superior completo" />
-	        </p:selectOneListbox>
+				value="#{trabalhadorMB.trabalhadorBean.escolaridade}">
+				<f:selectItem itemLabel="#{ENUM_ESCOLARITY.EFI.Descricao}"
+					itemValue="#{ENUM_ESCOLARITY.EFI}" />
+				<f:selectItem itemLabel="#{ENUM_ESCOLARITY.EFC.Descricao}"
+					itemValue="#{ENUM_ESCOLARITY.EFC}" />
+				<f:selectItem itemLabel="#{ENUM_ESCOLARITY.EMI.Descricao}"
+					itemValue="#{ENUM_ESCOLARITY.EMI}" />
+				<f:selectItem itemLabel="#{ENUM_ESCOLARITY.EMC.Descricao}"
+					itemValue="#{ENUM_ESCOLARITY.EMC}" />
+				<f:selectItem itemLabel="#{ENUM_ESCOLARITY.ESI.Descricao}"
+					itemValue="#{ENUM_ESCOLARITY.ESI}" />
+				<f:selectItem itemLabel="#{ENUM_ESCOLARITY.ESC.Descricao}"
+					itemValue="#{ENUM_ESCOLARITY.ESC}" />
+			</p:selectOneListbox>
 			<p:message for="escolarity" />
 
 			<p:outputLabel for="job" value="Profissão" />
-			<h:outputText required="true"
+			<p:inputText required="true"
 				requiredMessage="A profissão é um campo obrigatório"
 				placeholder="Insira a profissão aqui"
-				value="#{trabalhadorMB.trabalhador.profissao}" />
+				value="#{trabalhadorMB.trabalhadorBean.profissao}" />
 			<p:message for="job" />
-			
+
 			<p:outputLabel value="DRT" />
-			<p:selectBooleanCheckbox value="#{trabalhadorMB.trabalhador.drt}" itemLabel="DRT"/>		
-			
-			<p:outputLabel for="segment" value="Segmento Cultural" />
-			<h:outputText 
-				required="true"
-				requiredMessage="O campo Segmento cultural é obrigatório"
-				placeholder="Insira o segmento cultural"
-				value="#{trabalhadorMB.trabalhador.segmentoCultural}" />
-			<p:message for="segment"/>
-			
+			<p:selectBooleanCheckbox value="#{trabalhadorMB.trabalhador.drt}"
+				itemLabel="DRT" />
+
+			<!-- 			<p:outputLabel for="segment" value="Segmento Cultural" /> -->
+			<!-- 			<p:inputText  -->
+			<!-- 				required="true" -->
+			<!-- 				requiredMessage="O campo Segmento cultural é obrigatório" -->
+			<!-- 				placeholder="Insira o segmento cultural" -->
+			<!-- 				value="#{trabalhadorMB.trabalhadorBean.segmentoCultural}" /> -->
+			<!-- 			<p:message for="segment"/> -->
+
 			<p:outputLabel value="Facebook" for="facebook" />
-			<p:inputText value="#{trabalhadorMB.trabalhador.facebook}"
+			<p:inputText value="#{trabalhadorMB.trabalhadorBean.facebook}"
 				id="facebook" placeholder="Insira o facebook aqui" />
 			<p:message for="facebook" />
-			
+
 			<p:outputLabel value="Instagram" for="instagram" />
-			<p:inputText value="#{trabalhadorMB.trabalhador.instagram}"
+			<p:inputText value="#{trabalhadorMB.trabalhadorBean.instagram}"
 				id="instagram" placeholder="Insira o instagram aqui" />
 			<p:message for="instagram" />
-			
+
 			<p:outputLabel value="Youtube" for="youtube" />
-			<p:inputText value="#{trabalhadorMB.trabalhador.youtube}"
+			<p:inputText value="#{trabalhadorMB.trabalhadorBean.youtube}"
 				id="youtube" placeholder="Insira o youtube aqui" />
 			<p:message for="youtube" />
-			
+
 			<p:outputLabel value="Repositório Online" for="repo" />
-			<p:inputText value="#{trabalhadorMB.trabalhador.repositorioOnline}"
+			<p:inputText value="#{trabalhadorMB.trabalhadorBean.repositorioOnline}"
 				id="repo" placeholder="Insira o repositorio online aqui" />
 			<p:message for="repo" />
-			
+
 			<p:outputLabel value="Renda Mensal Cultural" for="renda" />
-			<p:password required="true" value="#{trabalhadorMB.trabalhador.rendaMensalProducoesCulturais}"
+			<p:inputText required="true"
+				value="#{trabalhadorMB.trabalhadorBean.rendaMensalProducoesCulturais}"
 				id="renda" requiredMessage="A renda mensal é um campo obrigatório!"
 				placeholder="Insira a renda mensal aqui" />
 			<p:message for="renda" />
-			
+
 			<p:outputLabel value="Renda 2018" for="renda_anual" />
-			<p:password required="true" value="#{trabalhadorMB.trabalhador.rendaAnual2018}"
-				id="renda_anual" requiredMessage="A renda anual 2018 é um campo obrigatório!"
+			<p:inputText required="true"
+				value="#{trabalhadorMB.trabalhadorBean.rendaAnual2018}" id="renda_anual"
+				requiredMessage="A renda anual 2018 é um campo obrigatório!"
 				placeholder="Insira a renda anual aqui" />
 			<p:message for="renda_anual" />
 			
-			<p:outputLabel value="Currículo artístico"
-				for="curriculo" />
+			<p:importEnum type="entities.Beneficios" var="ENUM_BENEFIT"
+				allSuffix="ALL_ENUM_VALUES" />
+
+			<p:outputLabel value="Benefícios" for="benefit" />
+			<p:selectManyCheckbox id="benefit"
+				value="#{trabalhadorMB.trabalhadorBean.beneficios}">
+				<f:selectItem itemLabel="#{ENUM_BENEFIT.BP.Descricao}" itemValue="#{ENUM_BENEFIT.BP}" />
+				<f:selectItem itemLabel="#{ENUM_BENEFIT.BA.Descricao}" itemValue="#{ENUM_BENEFIT.BA}" />
+				<f:selectItem itemLabel="#{ENUM_BENEFIT.BSD.Descricao}" itemValue="#{ENUM_BENEFIT.BSD}" />
+				<f:selectItem itemLabel="#{ENUM_BENEFIT.PTRF.Descricao}" itemValue="#{ENUM_BENEFIT.PTRF}" />
+				<f:selectItem itemLabel="#{ENUM_BENEFIT.BAE.Descricao}" itemValue="#{ENUM_BENEFIT.BAE}" />
+				<f:selectItem itemLabel="#{ENUM_BENEFIT.NDA.Descricao}" itemValue="#{ENUM_BENEFIT.NDA}" />
+			</p:selectManyCheckbox>
+
+			<p:outputLabel value="Currículo artístico" for="curriculo" />
 			<p:fileUpload required="true"
-				value="#{trabalhadorMB.trabalhador.curriculo_artistico}"
+				value="#{trabalhadorMB.trabalhadorBean.curriculoArtistico}"
 				id="curriculo"
 				requiredMessage="O currículo artístico é um campo obrigatório!"
 				mode="simple" skinSimple="true" accept="application/pdf, image/*"
 				invalidFileMessage="O currículo artístico deve ser uma imagem ou um pdf!" />
 			<p:message for="curriculo" />
 
-			<p:commandButton value="Editar Usuário" action="#{usuarioMB.editar}"
-				ajax="false" />
+			<p:commandButton value="Editar Trabalhador"
+				action="#{TrabalhadorMB.atualizarTrabalhador}" ajax="false" />
 		</p:panelGrid>
 	</h:form>
 	<h:form>
