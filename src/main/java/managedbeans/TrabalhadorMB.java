@@ -1,5 +1,6 @@
 package managedbeans;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -20,8 +21,12 @@ import exceptions.PersistenciaException;
  */
 
 @Named(value = "trabalhadorMB")
-@SessionScoped
-public class TrabalhadorMB {
+public class TrabalhadorMB implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@EJB
 	private TrabalhadorBean trabalhadorBean;
