@@ -33,11 +33,25 @@ public class Arquivo extends Entidade {
 	@Column(nullable = false, name = "tipo")
 	private String tipo;
 
+	public Arquivo() {
+	}
+
+	public Arquivo(String nome, byte[] conteudo, String tipo) {
+		setNome(nome);
+		setConteudo(conteudo);
+		setTipo(tipo);
+	}
+
 	public String getNome() {
 		return nome;
 	}
 
 	public void setNome(String nome) {
+		if (nome == null)
+			throw new IllegalArgumentException("nome não pode ser nulo");
+		if (nome.isEmpty())
+			throw new IllegalArgumentException("nome não pode ser vazio");
+
 		this.nome = nome;
 	}
 
@@ -46,6 +60,11 @@ public class Arquivo extends Entidade {
 	}
 
 	public void setConteudo(byte[] conteudo) {
+		if (conteudo == null)
+			throw new IllegalArgumentException("conteudo não pode ser nulo");
+		if (conteudo.length == 0)
+			throw new IllegalArgumentException("conteudo não pode ser vazio");
+
 		this.conteudo = conteudo;
 	}
 
@@ -54,6 +73,17 @@ public class Arquivo extends Entidade {
 	}
 
 	public void setTipo(String tipo) {
+		if (tipo == null)
+			throw new IllegalArgumentException("tipo não pode ser nulo");
+		if (tipo.isEmpty())
+			throw new IllegalArgumentException("tipo não pode ser vazio");
+
 		this.tipo = tipo;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("Arquivo(id: %d, nome: %s, conteudo: %s, tipo: %s)", getId(), this.nome, this.conteudo,
+				this.tipo);
 	}
 }

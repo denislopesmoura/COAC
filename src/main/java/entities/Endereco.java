@@ -28,9 +28,10 @@ public class Endereco extends Entidade {
 	private String cep;
 
 	@NotNull
-	@NotEmpty
-	@Column(nullable = false, name = "bairro")
-	private String bairro;
+	@Valid
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "bairro_id")
+	private Bairro bairro;
 
 	@NotNull
 	@NotEmpty
@@ -42,7 +43,7 @@ public class Endereco extends Entidade {
 	@Column(nullable = false, name = "numero")
 	private String numero;
 
-	@Column(nullable = true, name = "complemento")
+	@Column(name = "complemento")
 	private String complemento;
 
 	@NotNull
@@ -50,6 +51,18 @@ public class Endereco extends Entidade {
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "comprovante_de_endereco_id")
 	private Arquivo comprovante;
+
+	public Endereco() {
+	}
+
+	public Endereco(String cep, Bairro bairro, String rua, String numero, String complemento, Arquivo comprovante) {
+		this.cep = cep;
+		this.bairro = bairro;
+		this.rua = rua;
+		this.numero = numero;
+		this.complemento = complemento;
+		this.comprovante = comprovante;
+	}
 
 	public String getCep() {
 		return cep;
@@ -59,11 +72,11 @@ public class Endereco extends Entidade {
 		this.cep = cep;
 	}
 
-	public String getBairro() {
+	public Bairro getBairro() {
 		return bairro;
 	}
 
-	public void setBairro(String bairro) {
+	public void setBairro(Bairro bairro) {
 		this.bairro = bairro;
 	}
 
@@ -97,5 +110,12 @@ public class Endereco extends Entidade {
 
 	public void setComprovante(Arquivo comprovante) {
 		this.comprovante = comprovante;
+	}
+
+	@Override
+	public String toString() {
+		return String.format(
+				"Endereco(id: %d, cep: %s, bairro: %s, rua: %s, numero: %s, " + "complemento: %s, comprovante: %s)",
+				getId(), this.cep, this.bairro, this.rua, this.numero, this.complemento, this.comprovante);
 	}
 }
