@@ -1,7 +1,12 @@
 package entities;
 
 public enum StatusUsuario {
-	
-	APROVADA, REJEITADA, EM_ESPERA;
+
+	APROVADO, REJEITADO, EM_ESPERA;
+
+	@Override
+	public String toString() {
+		return String.format("StatusUsuario(status: %s)", this.name());
+	}
 
 }
