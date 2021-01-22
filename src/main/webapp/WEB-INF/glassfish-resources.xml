@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE resources PUBLIC "-//Sun Microsystems, Inc.//DTD GlassFish Application Server 3.0 Resource Definitions //EN" "../../resources/dtds/sun-resources_1_4.dtd" >
 <resources>
-	<jdbc-resource enabled="true" pool-name="CoacPool" jndi-name="java:app/jdbc/CoacPool" object-type="user"></jdbc-resource>
-    <jdbc-connection-pool 
-    	datasource-classname="com.mysql.cj.jdbc.MysqlDataSource" 
-    	res-type="javax.sql.DataSource"
-    	driver-classname="com.mysql.cj.jdbc.Driver"
-    	name="CoacPool"
-    	is-connection-validation-required="true"
-    	connection-validation-method="table"
-    	validation-table-name="DUAL"
-    	ping="true"
-    	allow-non-component-callers="false">
+	<jdbc-resource enabled="true" pool-name="CoacPool"
+		jndi-name="java:app/jdbc/CoacPool" object-type="user"></jdbc-resource>
+	<jdbc-connection-pool
+		datasource-classname="com.mysql.cj.jdbc.MysqlDataSource"
+		res-type="javax.sql.DataSource"
+		driver-classname="com.mysql.cj.jdbc.Driver" name="CoacPool"
+		is-connection-validation-required="true"
+		connection-validation-method="table" validation-table-name="DUAL"
+		ping="true" allow-non-component-callers="false">
 		<property name="user" value="root"></property>
 		<property name="password" value="root"></property>
 		<property name="url" value="jdbc:mysql://localhost:3306/coac"></property>
 		<property name="useSSL" value="false"></property>
-    </jdbc-connection-pool>
+		<property name="allowPublicKeyRetrieval" value="true"></property>
+	</jdbc-connection-pool>
 </resources>

@@ -4,6 +4,10 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
 	version="4.0">
 	<context-param>
+		<param-name>segmentosCulturais</param-name>
+		<param-value>Artes Plásticas, Artes Gráficas e Congêneres (Artes Visuais);Artesanato;Circo;Cultura Popular e Tradicional;Dança;Design e Moda;Fotografia;Gastronomia;Literatura;Música;Patrimônio;Teatro;Formação e Capacitação;Pesquisa Cultural;Audiovisual;Cultura Afro-Brasileira;Cultura Geek;Diversidade Sexual;Arte Urbana;Produtor Cultural</param-value>
+	</context-param>
+	<context-param>
 		<param-name>javax.faces.ENABLE_CDI_RESOLVER_CHAIN</param-name>
 		<param-value>true</param-value>
 	</context-param>
@@ -23,7 +27,7 @@
 	<welcome-file-list>
 		<welcome-file>cadastro.xhtml</welcome-file>
 	</welcome-file-list>
-	
+
 	<error-page>
 		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
 		<location>/login.xhtml</location>
